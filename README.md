@@ -39,11 +39,11 @@ GomsBook AI의 독립형 React Web Chat UI입니다.
 
 ### 서버 구성
 
-  구성                       포트 역할
+  구성                      포트  역할
   ------------------------ ------ --------------------
-  GomsBook-AI-React          5173 React 개발 서버
-  GomsBook-AI-API            5001 REST/SSE API 서버
-  GomsBook-AI-Agent-Core     없음 API 내부 Java 엔진
+  GomsBook-AI-React         5173  React 개발 서버
+  GomsBook-AI-API           5001  REST/SSE API 서버
+  GomsBook-AI-Agent-Core    없음  API 내부 Java 엔진
 
 `GomsBook-AI-Agent-Core`는 별도 HTTP 서버로 실행하지 않습니다.\
 `GomsBook-AI-API`가 Core를 Java dependency로 직접 호출합니다.
@@ -514,3 +514,11 @@ EPUB 실제 작업
 
 이 흐름을 독립적인 Web UI에서 제공하여 GomsBook Editor의 EPUB 제작,
 검증, 접근성 자동화 및 AI Agent 기능을 확장하는 것을 목표로 합니다.
+
+## 16. Chat UI 실행 화면
+
+GomsBook-AI-React에서 실제 Agent REST/SSE 연동, 사용자 승인 및 EPUB
+XHTML 파일 생성까지 동작하는 Chat UI 실행 화면입니다.
+
+![GomsBook-AI-React ChatUI
+실행화면](doc/GomsBook-AI-React%20ChatUI실행화면.png)
