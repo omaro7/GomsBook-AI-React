@@ -37,6 +37,7 @@ function normalizeRequest(
   request: AgentRunRequest
 ): AgentRunRequest {
   const projectId = request.projectId.trim()
+  const conversationId = request.conversationId.trim()
   const message = request.message.trim()
   const agent = request.agent.trim()
   const model = request.model.trim()
@@ -67,6 +68,7 @@ function normalizeRequest(
 
   return {
     projectId,
+    conversationId,
     message,
     agent,
     model,

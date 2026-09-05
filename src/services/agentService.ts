@@ -60,6 +60,10 @@ export async function executeAgent(
     useProjectStore
       .getState()
 
+  const chat =
+    useChatStore
+      .getState()
+      
   const projectId =
     project.currentProjectName.trim()
 
@@ -69,11 +73,17 @@ export async function executeAgent(
     )
   }
 
+  const conversationId =
+    chat.ensureConversationId()
+
   const request:
     AgentRunRequest = {
 
       projectId:
         projectId,
+
+      conversationId:
+        conversationId,
 
       message:
         normalizedMessage,

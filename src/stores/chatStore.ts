@@ -10,7 +10,17 @@ import type {
 } from "@/models/ChatMessage"
 
 interface ChatState {
+  conversationId: string | null
+
   messages: ChatMessage[]
+
+  ensureConversationId: () => string
+
+  setConversationId: (
+    conversationId: string
+  ) => void
+
+  resetConversation: () => void
 
   addMessage: (
     role: ChatMessageRole,
@@ -55,7 +65,42 @@ export const useChatStore =
       set,
       get
     ) => ({
+      conversationId: null,
+
       messages: [],
+
+      ensureConversationId: () => {
+        const conversationId =
+          get().conversationId
+
+        if (conversationId) {
+          return conversationId
+        }
+
+        const newConversationId =
+          crypto.randomUUID()
+
+        set({
+          conversationId:
+            newConversationId
+        })
+
+        return newConversationId
+      },
+
+      setConversationId: (
+        conversationId
+      ) => {
+        set({
+          conversationId
+        })
+      },
+
+      resetConversation: () => {
+        set({
+          conversationId: null
+        })
+      },
 
       addMessage: (
         role,
