@@ -3,6 +3,8 @@ import {
   Trash2
 } from "lucide-react"
 
+import { useEffect } from "react"
+
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
@@ -20,8 +22,33 @@ import { useAgentStore } from "@/stores/agentStore"
 import { useChatConfigStore } from "@/stores/chatConfigStore"
 import { useChatStore } from "@/stores/chatStore"
 import { useRagStore } from "@/stores/ragStore"
+import { useProjectStore } from "@/stores/projectStore"
 
 export function ChatHeader() {
+  const projects = useProjectStore(state => state.projects)
+  const currentProjectName = useProjectStore(state => state.currentProjectName)
+  const currentProjectPath = useProjectStore(state => state.currentProjectPath)
+  const projectRoot = useProjectStore(state => state.projectRoot)
+  const projectLoading = useProjectStore(state => state.loading)
+  const projectLoaded = useProjectStore(state => state.loaded)
+  const projectError = useProjectStore(state => state.error)
+  const loadProjects = useProjectStore(state => state.loadProjects)
+  const selectProject = useProjectStore(state => state.selectProject)
+
+  useEffect(() => {
+    if (!projectLoaded) {
+      void loadProjects()
+    }
+  }, [projectLoaded, loadProjects])
+
+  const handleProjectChange = (value: string | null) => {
+    if (value === null) {
+      return
+    }
+
+    void selectProject(value)
+  }
+
   const running =
     useAgentStore(
       state => state.running
@@ -243,6 +270,48 @@ export function ChatHeader() {
           items-center
           gap-2
         "
+        title={currentProjectPath || projectRoot}
+      >
+        <Label
+          htmlFor="project-select"
+          className="text-xs"
+        >
+          Project
+        </Label>
+
+        <Select
+          value={currentProjectName}
+          onValueChange={handleProjectChange}
+          disabled={running || projectLoading || !projectLoaded}
+        >
+          <SelectTrigger
+            id="project-select"
+            className="w-52"
+          >
+            <SelectValue
+              placeholder="Project 선택"
+            />
+          </SelectTrigger>
+
+          <SelectContent>
+            {projects.map(item => (
+              <SelectItem
+                key={item.projectName}
+                value={item.projectName}
+              >
+                {item.projectName}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div
+        className="
+          flex
+          items-center
+          gap-2
+        "
       >
         <Label
           htmlFor="agent-select"
@@ -397,6 +466,30 @@ export function ChatHeader() {
           </Label>
         </div>
       </div>
+
+      {projectLoading && (
+        <div
+          className="
+            w-full
+            text-xs
+            text-muted-foreground
+          "
+        >
+          프로젝트 정보를 불러오는 중입니다.
+        </div>
+      )}
+
+      {projectError && (
+        <div
+          className="
+            w-full
+            text-xs
+            text-destructive
+          "
+        >
+          {projectError}
+        </div>
+      )}
 
       {configLoading && (
         <div

@@ -36,9 +36,16 @@ export async function runAgent(
 function normalizeRequest(
   request: AgentRunRequest
 ): AgentRunRequest {
+  const projectId = request.projectId.trim()
   const message = request.message.trim()
   const agent = request.agent.trim()
   const model = request.model.trim()
+
+  if (!projectId) {
+    throw new Error(
+      "현재 프로젝트가 선택되지 않았습니다."
+    )
+  }
 
   if (!message) {
     throw new Error(
@@ -59,6 +66,7 @@ function normalizeRequest(
   }
 
   return {
+    projectId,
     message,
     agent,
     model,

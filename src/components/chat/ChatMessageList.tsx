@@ -98,6 +98,7 @@ export function ChatMessageList() {
                             className="
                               whitespace-pre-wrap
                               break-words
+                              text-left
                             "
                           >
                             {message.content}
@@ -111,7 +112,7 @@ export function ChatMessageList() {
                               leading-7
 
                               [&_a]:
-                              underline
+                              no-underline
 
                               [&_blockquote]:
                               m-0

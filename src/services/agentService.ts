@@ -34,6 +34,10 @@ import {
   useRagStore
 } from "@/stores/ragStore"
 
+import {
+  useProjectStore
+} from "@/stores/projectStore"
+
 export async function executeAgent(
   message: string
 ): Promise<AgentRunResponse> {
@@ -52,8 +56,24 @@ export async function executeAgent(
     useChatConfigStore
       .getState()
 
+  const project =
+    useProjectStore
+      .getState()
+
+  const projectId =
+    project.currentProjectName.trim()
+
+  if (!projectId) {
+    throw new Error(
+      "현재 프로젝트가 선택되지 않았습니다."
+    )
+  }
+
   const request:
     AgentRunRequest = {
+
+      projectId:
+        projectId,
 
       message:
         normalizedMessage,

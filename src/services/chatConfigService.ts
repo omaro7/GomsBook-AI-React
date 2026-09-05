@@ -51,8 +51,6 @@ export async function loadChatConfig():
       message
     )
 
-    throw exception
-
   } finally {
 
     useChatConfigStore

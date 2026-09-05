@@ -1,4 +1,6 @@
 import {
+  useEffect,
+  useRef,
   useState
 } from "react"
 
@@ -29,15 +31,34 @@ export function ChatInput() {
     setMessage
   ] = useState("")
 
+  const inputRef =
+    useRef<HTMLTextAreaElement | null>(
+      null
+    )
+
   const running =
     useAgentStore(
       state => state.running
     )
 
-  const error =
-    useAgentStore(
-      state => state.error
-    )
+  useEffect(
+    () => {
+
+      if (running) {
+        return
+      }
+
+      requestAnimationFrame(
+        () => {
+          inputRef.current?.focus()
+        }
+      )
+
+    },
+    [
+      running
+    ]
+  )
 
   async function submitMessage() {
 
@@ -116,6 +137,7 @@ export function ChatInput() {
         "
       >
         <Textarea
+          ref={inputRef}
           value={message}
           onChange={
             event =>
@@ -156,22 +178,6 @@ export function ChatInput() {
           />
         </Button>
       </div>
-
-      {
-        error && (
-          <div
-            className="
-              mx-auto
-              mt-2
-              max-w-5xl
-              text-sm
-              text-destructive
-            "
-          >
-            {error}
-          </div>
-        )
-      }
     </div>
   )
 }

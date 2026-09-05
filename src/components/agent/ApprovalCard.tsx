@@ -192,10 +192,13 @@ export function ApprovalCard({
             leading-6
           "
         >
-          {
-            approval.message ||
-            "Agent 작업을 승인하시겠습니까?"
-          }
+        {
+          approval.message
+            ? normalizeApprovalMessage(
+                approval.message
+              )
+            : "Agent 작업을 승인하시겠습니까?"
+        }
         </p>
 
         {
@@ -351,4 +354,13 @@ function getErrorMessage(
   }
 
   return "승인 처리 중 오류가 발생했습니다."
+}
+
+function normalizeApprovalMessage(
+  message: string
+): string {
+  return message.replace(
+    /\$\\rightarrow\$/g,
+    "→"
+  )
 }

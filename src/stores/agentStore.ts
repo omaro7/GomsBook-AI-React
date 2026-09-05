@@ -325,9 +325,16 @@ export const useAgentStore =
                   )
               }
 
+              const hasPendingApprovals =
+                get()
+                  .approvals
+                  .length > 0
+
               set({
                 status:
-                  "RUNNING",
+                  hasPendingApprovals
+                    ? "WAITING_APPROVAL"
+                    : "RUNNING",
 
                 running:
                   true,
@@ -351,9 +358,16 @@ export const useAgentStore =
                   )
               }
 
+              const hasPendingApprovals =
+                get()
+                  .approvals
+                  .length > 0
+
               set({
                 status:
-                  "RUNNING",
+                  hasPendingApprovals
+                    ? "WAITING_APPROVAL"
+                    : "RUNNING",
 
                 running:
                   true
@@ -390,6 +404,29 @@ export const useAgentStore =
             }
 
             case "AGENT_COMPLETED": {
+
+              const hasPendingApprovals =
+                get()
+                  .approvals
+                  .length > 0
+
+              if (
+                hasPendingApprovals
+              ) {
+
+                set({
+                  status:
+                    "WAITING_APPROVAL",
+
+                  running:
+                    true,
+
+                  error:
+                    null
+                })
+
+                break
+              }
 
               get()
                 .completeRun()

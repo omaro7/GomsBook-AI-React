@@ -189,6 +189,33 @@ export const useChatStore =
             break
           }
 
+          case "AGENT_FAILED": {
+
+            const fileName =
+              event.fileName ??
+              "요청한 파일"
+
+            let failureMessage =
+              `${fileName} 파일을 생성하지 못했습니다.`
+
+            if (
+              event.message?.includes(
+                "already exists"
+              )
+            ) {
+              failureMessage =
+                `${fileName} 파일을 생성하지 못했습니다. 이미 동일한 파일이 존재합니다.`
+            }
+
+            get().addAssistantMessage(
+              failureMessage,
+              event.runId,
+              event.timestamp
+            )
+
+            break
+          }
+
           default:
             break
         }
