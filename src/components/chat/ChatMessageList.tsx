@@ -10,6 +10,15 @@ import {
   useChatStore
 } from "@/stores/chatStore"
 
+function normalizeMarkdown(content: string) {
+  return content
+    .replace(/\$\\rightarrow\$/g, "→")
+    .replace(/\$\\leftarrow\$/g, "←")
+    .replace(/\$\\leftrightarrow\$/g, "↔")
+    .replace(/\$\\Rightarrow\$/g, "⇒")
+    .replace(/\$\\Leftarrow\$/g, "⇐")
+}
+
 export function ChatMessageList() {
 
   const messages =
@@ -222,7 +231,7 @@ export function ChatMessageList() {
                                 remarkGfm
                               ]}
                             >
-                              {message.content}
+                               {normalizeMarkdown(message.content)}
                             </ReactMarkdown>
                           </div>
                         )
