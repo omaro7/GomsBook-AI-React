@@ -22,6 +22,10 @@ import {
   useAgentStore
 } from "@/stores/agentStore"
 
+import {
+  CurrentProjectBadge
+} from "@/components/project/CurrentProjectBadge"
+
 export function ChatPanel() {
 
   const running =
@@ -60,17 +64,29 @@ export function ChatPanel() {
         "
       >
         <div>
-          <h2
+          <div
             className="
-              text-base
-              font-semibold
+              flex
+              items-center
+              gap-2
             "
           >
-            GomsBook AI
-          </h2>
+            <h2
+              className="
+                shrink-0
+                text-base
+                font-semibold
+              "
+            >
+              GomsBook AI
+            </h2>
+
+            <CurrentProjectBadge />
+          </div>
 
           <p
             className="
+              mt-0.5
               text-xs
               text-muted-foreground
             "
@@ -78,6 +94,7 @@ export function ChatPanel() {
             EPUB 제작 및 검증 Agent
           </p>
         </div>
+
 
         <div
           className="
