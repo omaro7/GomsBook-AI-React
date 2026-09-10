@@ -17,6 +17,7 @@ function normalizeMarkdown(content: string) {
     .replace(/\$\\leftrightarrow\$/g, "↔")
     .replace(/\$\\Rightarrow\$/g, "⇒")
     .replace(/\$\\Leftarrow\$/g, "⇐")
+    .replace(/\$\\checkmark\$/g, "✓")
 }
 
 export function ChatMessageList() {
@@ -55,9 +56,8 @@ export function ChatMessageList() {
     >
       <div
         className="
-          mx-auto
           flex
-          max-w-5xl
+          w-full
           flex-col
           gap-4
         "
@@ -110,120 +110,99 @@ export function ChatMessageList() {
                               text-left
                             "
                           >
-                            {message.content}
+                            {
+                              message.content
+                            }
                           </p>
                         )
                         : (
                           <div
                             className="
                               break-words
+                              text-left
                               text-sm
                               leading-7
 
-                              [&_a]:
-                              no-underline
+                              [&_a]:no-underline
+                              [&_a]:text-left
 
-                              [&_blockquote]:
-                              m-0
+                              [&_blockquote]:m-0
+                              [&_blockquote]:w-fit
+                              [&_blockquote]:max-w-full
+                              [&_blockquote]:rounded-2xl
+                              [&_blockquote]:border
+                              [&_blockquote]:border-border
+                              [&_blockquote]:border-l
+                              [&_blockquote]:bg-muted/50
+                              [&_blockquote]:px-4
+                              [&_blockquote]:py-3
+                              [&_blockquote]:text-left
 
-                              [&_blockquote]:
-                              w-fit
+                              [&_blockquote_p]:m-0
+                              [&_blockquote_p]:text-left
 
-                              [&_blockquote]:
-                              max-w-full
+                              [&_code]:rounded
+                              [&_code]:bg-muted
+                              [&_code]:px-1.5
+                              [&_code]:py-0.5
 
-                              [&_blockquote]:
-                              rounded-2xl
+                              [&_h1]:text-left
+                              [&_h2]:text-left
+                              [&_h3]:text-left
+                              [&_h4]:text-left
 
-                              [&_blockquote]:
-                              border
+                              [&_li]:ml-5
+                              [&_li]:text-left
 
-                              [&_blockquote]:
-                              border-l
+                              [&_ol]:list-decimal
+                              [&_ol]:text-left
 
-                              [&_blockquote]:
-                              bg-muted/50
+                              [&_p]:my-0
+                              [&_p]:text-left
 
-                              [&_blockquote]:
-                              px-4
+                              [&_pre]:my-3
+                              [&_pre]:overflow-x-auto
+                              [&_pre]:rounded-xl
+                              [&_pre]:bg-muted
+                              [&_pre]:p-4
+                              [&_pre]:text-left
 
-                              [&_blockquote]:
-                              py-3
+                              [&_table]:my-3
+                              [&_table]:w-full
+                              [&_table]:border-collapse
+                              [&_table]:border
+                              [&_table]:border-slate-300
 
-                              [&_blockquote_p]:
-                              m-0
+                              [&_thead]:bg-slate-200
 
-                              [&_code]:
-                              rounded
+                              [&_thead_tr]:bg-slate-200
 
-                              [&_code]:
-                              bg-muted
+                              [&_th]:border
+                              [&_th]:border-slate-300
+                              [&_th]:bg-slate-200
+                              [&_th]:px-3
+                              [&_th]:py-2.5
+                              [&_th]:text-left
+                              [&_th]:font-semibold
+                              [&_th]:text-slate-900
+                              [&_th]:whitespace-nowrap
 
-                              [&_code]:
-                              px-1.5
+                              [&_td]:border
+                              [&_td]:border-slate-300
+                              [&_td]:px-3
+                              [&_td]:py-2
+                              [&_td]:align-top
+                              [&_td]:text-left
 
-                              [&_code]:
-                              py-0.5
+                              [&_tbody_tr:nth-child(odd)]:bg-white
+                              [&_tbody_tr:nth-child(even)]:bg-slate-50
 
-                              [&_li]:
-                              ml-5
+                              [&_tbody_tr]:transition-colors
 
-                              [&_ol]:
-                              list-decimal
+                              [&_tbody_tr:hover]:bg-blue-50
 
-                              [&_p]:
-                              my-0
-
-                              [&_pre]:
-                              my-3
-
-                              [&_pre]:
-                              overflow-x-auto
-
-                              [&_pre]:
-                              rounded-xl
-
-                              [&_pre]:
-                              bg-muted
-
-                              [&_pre]:
-                              p-4
-
-                              [&_table]:
-                              my-3
-
-                              [&_table]:
-                              w-full
-
-                              [&_table]:
-                              border-collapse
-
-                              [&_td]:
-                              border
-
-                              [&_td]:
-                              px-3
-
-                              [&_td]:
-                              py-2
-
-                              [&_th]:
-                              border
-
-                              [&_th]:
-                              bg-muted
-
-                              [&_th]:
-                              px-3
-
-                              [&_th]:
-                              py-2
-
-                              [&_th]:
-                              text-left
-
-                              [&_ul]:
-                              list-disc
+                              [&_ul]:list-disc
+                              [&_ul]:text-left
                             "
                           >
                             <ReactMarkdown
@@ -231,7 +210,11 @@ export function ChatMessageList() {
                                 remarkGfm
                               ]}
                             >
-                               {normalizeMarkdown(message.content)}
+                              {
+                                normalizeMarkdown(
+                                  message.content
+                                )
+                              }
                             </ReactMarkdown>
                           </div>
                         )

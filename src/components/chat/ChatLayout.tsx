@@ -61,6 +61,7 @@ export function ChatLayout() {
         flex
         h-screen
         min-h-0
+        justify-center
         bg-background
         text-foreground
       "
@@ -68,18 +69,20 @@ export function ChatLayout() {
       <div
         className="
           flex
-          min-w-0
-          flex-1
-          justify-center
+          h-full
+          min-h-0
+          w-fit
+          border-l
+          border-r
         "
       >
         <div
           className="
             flex
             h-full
-            w-full
-            max-w-5xl
             min-h-0
+            w-[1024px]
+            min-w-0
             flex-col
           "
         >
@@ -110,9 +113,9 @@ export function ChatLayout() {
             <ChatPanel />
           </main>
         </div>
-      </div>
 
-      <CurrentProjectPanel />
+        <CurrentProjectPanel />
+      </div>
     </div>
   )
 }

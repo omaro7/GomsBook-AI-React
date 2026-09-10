@@ -38,18 +38,18 @@ export function CurrentProjectPanel() {
     )
 
   return (
-        <aside
-        className="
-            hidden
-            h-full
-            w-72
-            shrink-0
-            flex-col
-            border-l
-            bg-muted/20
-            xl:flex
-        "
->
+    <aside
+      className="
+        hidden
+        h-full
+        w-72
+        shrink-0
+        flex-col
+        border-l
+        bg-muted/20
+        xl:flex
+      "
+    >
       <div
         className="
           flex
