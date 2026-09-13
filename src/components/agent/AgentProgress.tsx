@@ -11,8 +11,16 @@ import {
 } from "@/components/agent/ApprovalCard"
 
 import {
+  RagIndexProgressCard
+} from "@/components/agent/RagIndexProgressCard"
+
+import {
   useAgentStore
 } from "@/stores/agentStore"
+
+import {
+  useRagStore
+} from "@/stores/ragStore"
 
 import type {
   ToolCall
@@ -38,6 +46,12 @@ export function AgentProgress() {
         state.error
     )
 
+  const ragProgress =
+    useRagStore(
+      state =>
+        state.progress
+    )
+
   const hasToolCalls =
     toolCalls.length > 0
 
@@ -49,7 +63,13 @@ export function AgentProgress() {
       error
     )
 
+  const hasRagProgress =
+    Boolean(
+      ragProgress
+    )
+
   const hasContent =
+    hasRagProgress ||
     hasToolCalls ||
     hasApprovals ||
     hasError
@@ -79,6 +99,14 @@ export function AgentProgress() {
           gap-4
         "
       >
+
+        {
+          hasRagProgress && (
+            <RagIndexProgressCard />
+          )
+        }
+
+
         {
           hasToolCalls && (
             <section
@@ -279,6 +307,7 @@ export function AgentProgress() {
             </div>
           )
         }
+
       </div>
     </div>
   )

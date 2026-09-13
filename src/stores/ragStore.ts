@@ -14,11 +14,17 @@ import type {
   RagContextPayload
 } from "@/models/RagContextPayload"
 
+import type {
+  RagIndexProgress
+} from "@/models/RagIndexProgress"
+
 interface RagState {
 
   contexts: RagContext[]
 
   running: boolean
+
+  progress: RagIndexProgress | null
 
   addContext:
     (
@@ -32,6 +38,9 @@ interface RagState {
 
   clear:
     () => void
+
+  clearProgress:
+    () => void
 }
 
 export const useRagStore =
@@ -44,6 +53,8 @@ export const useRagStore =
       contexts: [],
 
       running: false,
+
+      progress: null,
 
       addContext:
         (
@@ -73,7 +84,26 @@ export const useRagStore =
 
               set({
                 contexts: [],
-                running: true
+                running: true,
+                progress: null
+              })
+
+              break
+            }
+
+            case "RAG_PROGRESS": {
+
+              const progress =
+                event.data as RagIndexProgress | null | undefined
+
+              if (!progress) return
+
+              set({
+                running:
+                  progress.stage !== "COMPLETED"
+                  && progress.stage !== "FAILED",
+
+                progress
               })
 
               break
@@ -81,15 +111,13 @@ export const useRagStore =
 
             case "RAG_CONTEXT": {
 
-              const payload = event.data as RagContextPayload | null | undefined
+              const payload =
+                event.data as RagContextPayload | null | undefined
 
               if (!payload) return
 
-              if (
-                typeof payload.text !== "string"
-              ) return
-
-              const text = payload.text.trim()
+              const text =
+                payload.text?.trim()
 
               if (!text) return
 
@@ -99,8 +127,8 @@ export const useRagStore =
                     event.runId,
 
                   title:
-                    payload.title?.trim() ||
-                    "RAG Context",
+                    payload.title?.trim()
+                    || "RAG Context",
 
                   text,
 
@@ -111,8 +139,8 @@ export const useRagStore =
                     payload.score ?? null,
 
                   createdAt:
-                    event.timestamp ||
-                    new Date().toISOString()
+                    event.timestamp
+                    || new Date().toISOString()
                 })
 
               break
@@ -149,7 +177,16 @@ export const useRagStore =
 
           set({
             contexts: [],
-            running: false
+            running: false,
+            progress: null
+          })
+        },
+
+      clearProgress:
+        () => {
+
+          set({
+            progress: null
           })
         }
     })

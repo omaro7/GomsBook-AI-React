@@ -48,10 +48,11 @@ export function ChatMessageList() {
   return (
     <div
       className="
+        min-h-0
         flex-1
         overflow-y-auto
         px-3
-        py-6
+        py-3
       "
     >
       <div

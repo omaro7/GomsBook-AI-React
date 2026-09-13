@@ -2,6 +2,7 @@ export type AgentEventType =
   | "AGENT_STARTED"
   | "ASSISTANT_MESSAGE"
   | "RAG_STARTED"
+  | "RAG_PROGRESS"
   | "RAG_CONTEXT"
   | "RAG_COMPLETED"
   | "TOOL_STARTED"
@@ -15,26 +16,15 @@ export type AgentEventType =
   | "AGENT_FAILED"
 
 export interface AgentEvent<T = unknown> {
-
   runId: string
-
   type: AgentEventType
-
   message?: string | null
-
   content?: string | null
-
   toolCallId?: string | null
-
   toolName?: string | null
-
   data?: T | null
-
   approvalId?: string | null
-
   title?: string | null
-
   fileName?: string | null
-
   timestamp?: string | null
 }
