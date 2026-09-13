@@ -1,0 +1,287 @@
+:root {
+
+  /* =========================================================
+   * GomsBook AI Design Tokens
+   * ========================================================= */
+
+  /* ---------------------------------------------------------
+   * Background
+   * --------------------------------------------------------- */
+
+  --goms-bg: #f4f7fb;
+
+  --goms-bg-top: #f8faff;
+
+  --goms-bg-bottom: #eef3f8;
+
+
+  /* ---------------------------------------------------------
+   * Surface
+   * --------------------------------------------------------- */
+
+  --goms-surface: #ffffff;
+
+  --goms-surface-soft: #eef3ff;
+
+  --goms-surface-muted: #f7f9fd;
+
+  --goms-surface-subtle: #fbfcfe;
+
+
+  /* ---------------------------------------------------------
+   * Text
+   * --------------------------------------------------------- */
+
+  --goms-text: #152033;
+
+  --goms-text-secondary: #526176;
+
+  --goms-text-muted: #667085;
+
+  --goms-text-subtle: #7a8799;
+
+  --goms-text-disabled: #98a2b3;
+
+  --goms-text-inverse: #ffffff;
+
+
+  /* ---------------------------------------------------------
+   * Border
+   * --------------------------------------------------------- */
+
+  --goms-border: #dfe6ef;
+
+  --goms-border-soft: #e4e9f0;
+
+  --goms-border-strong: #cfd9e8;
+
+
+  /* ---------------------------------------------------------
+   * Brand
+   * --------------------------------------------------------- */
+
+  --goms-primary: #2457e6;
+
+  --goms-primary-hover: #4e7cff;
+
+  --goms-primary-active: #1d48c6;
+
+  --goms-primary-soft: #eef3ff;
+
+  --goms-primary-soft-strong: #e9efff;
+
+
+  /* ---------------------------------------------------------
+   * Navy
+   * --------------------------------------------------------- */
+
+  --goms-navy: #0f2747;
+
+  --goms-navy-light: #173865;
+
+  --goms-navy-dark: #0e1c2f;
+
+
+  /* ---------------------------------------------------------
+   * Status
+   * --------------------------------------------------------- */
+
+  --goms-success: #0f9f78;
+
+  --goms-warning: #e29413;
+
+  --goms-danger: #d94d4d;
+
+  --goms-info: #20a4f3;
+
+  --goms-violet: #7657d6;
+
+
+  /* ---------------------------------------------------------
+   * Status Surface
+   * --------------------------------------------------------- */
+
+  --goms-success-soft: rgba(15, 159, 120, 0.08);
+
+  --goms-warning-soft: rgba(226, 148, 19, 0.08);
+
+  --goms-danger-soft: rgba(217, 77, 77, 0.08);
+
+  --goms-info-soft: rgba(32, 164, 243, 0.08);
+
+
+  /* ---------------------------------------------------------
+   * Radius
+   * --------------------------------------------------------- */
+
+  --goms-radius-xs: 6px;
+
+  --goms-radius-sm: 9px;
+
+  --goms-radius-md: 12px;
+
+  --goms-radius-lg: 16px;
+
+  --goms-radius-xl: 22px;
+
+  --goms-radius-panel: 24px;
+
+  --goms-radius-hero: 30px;
+
+  --goms-radius-round: 999px;
+
+
+  /* ---------------------------------------------------------
+   * Shadow
+   * --------------------------------------------------------- */
+
+  --goms-shadow-xs:
+    0 2px 8px rgba(24, 45, 82, 0.05);
+
+  --goms-shadow-sm:
+    0 5px 20px rgba(24, 45, 82, 0.07);
+
+  --goms-shadow-md:
+    0 12px 35px rgba(24, 45, 82, 0.06);
+
+  --goms-shadow-lg:
+    0 18px 48px rgba(24, 45, 82, 0.10);
+
+
+  /* ---------------------------------------------------------
+   * Typography
+   * --------------------------------------------------------- */
+
+  --goms-font:
+    "Pretendard",
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    "Malgun Gothic",
+    Arial,
+    sans-serif;
+
+  --goms-font-mono:
+    Consolas,
+    "SFMono-Regular",
+    "SF Mono",
+    Menlo,
+    Monaco,
+    monospace;
+
+
+  /* ---------------------------------------------------------
+   * Font Size
+   * --------------------------------------------------------- */
+
+  --goms-font-size-xs: 12px;
+
+  --goms-font-size-sm: 13px;
+
+  --goms-font-size-md: 14px;
+
+  --goms-font-size-base: 16px;
+
+  --goms-font-size-lg: 18px;
+
+  --goms-font-size-xl: 20px;
+
+  --goms-font-size-2xl: 24px;
+
+  --goms-font-size-3xl: 30px;
+
+
+  /* ---------------------------------------------------------
+   * Font Weight
+   * --------------------------------------------------------- */
+
+  --goms-font-weight-normal: 400;
+
+  --goms-font-weight-medium: 500;
+
+  --goms-font-weight-semibold: 600;
+
+  --goms-font-weight-bold: 700;
+
+  --goms-font-weight-extrabold: 800;
+
+  --goms-font-weight-black: 900;
+
+
+  /* ---------------------------------------------------------
+   * Line Height
+   * --------------------------------------------------------- */
+
+  --goms-line-height-tight: 1.25;
+
+  --goms-line-height-normal: 1.5;
+
+  --goms-line-height-relaxed: 1.65;
+
+  --goms-line-height-content: 1.75;
+
+
+  /* ---------------------------------------------------------
+   * Spacing
+   * --------------------------------------------------------- */
+
+  --goms-space-1: 4px;
+
+  --goms-space-2: 8px;
+
+  --goms-space-3: 12px;
+
+  --goms-space-4: 16px;
+
+  --goms-space-5: 20px;
+
+  --goms-space-6: 24px;
+
+  --goms-space-7: 28px;
+
+  --goms-space-8: 32px;
+
+  --goms-space-10: 40px;
+
+  --goms-space-12: 48px;
+
+
+  /* ---------------------------------------------------------
+   * Layout
+   * --------------------------------------------------------- */
+
+  --goms-header-height: 66px;
+
+  --goms-chat-max-width: 860px;
+
+  --goms-project-panel-width: 320px;
+
+  --goms-layout-gap: 20px;
+
+
+  /* ---------------------------------------------------------
+   * Transition
+   * --------------------------------------------------------- */
+
+  --goms-transition-fast:
+    120ms ease;
+
+  --goms-transition-normal:
+    180ms ease;
+
+  --goms-transition-slow:
+    280ms ease;
+
+
+  /* ---------------------------------------------------------
+   * Z-Index
+   * --------------------------------------------------------- */
+
+  --goms-z-base: 1;
+
+  --goms-z-dropdown: 20;
+
+  --goms-z-header: 50;
+
+  --goms-z-modal: 100;
+
+}

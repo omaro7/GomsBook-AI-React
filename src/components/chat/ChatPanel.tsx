@@ -52,23 +52,34 @@ export function ChatPanel() {
         min-w-0
         w-full
         flex-col
-        bg-background
+        bg-transparent
       "
     >
       <div
         className="
           flex
+          shrink-0
           items-center
           justify-between
+          gap-4
           border-b
-          px-4
+          border-border/80
+          bg-[var(--goms-surface-subtle)]
+          px-5
           py-3
+          max-sm:items-start
+          max-sm:px-4
         "
       >
-        <div>
+        <div
+          className="
+            min-w-0
+          "
+        >
           <div
             className="
               flex
+              min-w-0
               items-center
               gap-2
             "
@@ -76,8 +87,10 @@ export function ChatPanel() {
             <h2
               className="
                 shrink-0
-                text-base
-                font-semibold
+                text-sm
+                font-bold
+                tracking-[-0.02em]
+                text-foreground
               "
             >
               GomsBook AI
@@ -88,12 +101,13 @@ export function ChatPanel() {
 
           <p
             className="
-              mt-0.5
+              mt-1
               text-xs
+              leading-5
               text-muted-foreground
             "
           >
-            EPUB 제작 및 검증 Agent
+            EPUB 제작 · 검증 · 접근성 · AI Agent
           </p>
         </div>
 
@@ -101,55 +115,120 @@ export function ChatPanel() {
         <div
           className="
             flex
+            shrink-0
             items-center
             gap-2
+            rounded-[var(--goms-radius-round)]
+            border
+            border-border
+            bg-card
+            px-3
+            py-1.5
             text-xs
+            font-medium
             text-muted-foreground
+            shadow-[var(--goms-shadow-xs)]
+            max-sm:px-2
           "
         >
           {
             running && (
               <LoaderCircle
                 className="
-                  h-4
-                  w-4
+                  size-3.5
+                  shrink-0
                   animate-spin
+                  text-primary
                 "
               />
             )
           }
 
-          <span>
-            {getStatusText(status)}
-          </span>
-
-          <span>
-            ·
-          </span>
-
-          <span>
+          <span
+            className={getStatusClassName(
+              status
+            )}
+          >
             {
-              streamConnected
-                ? "SSE 연결됨"
-                : running
-                  ? "SSE 연결 대기"
-                  : "대기"
+              getStatusText(
+                status
+              )
             }
+          </span>
+
+          <span
+            className="
+              text-border
+            "
+            aria-hidden="true"
+          >
+            |
+          </span>
+
+          <span
+            className="
+              flex
+              items-center
+              gap-1.5
+            "
+          >
+            <span
+              className={`
+                size-1.5
+                shrink-0
+                rounded-full
+                ${
+                  streamConnected
+                    ? "bg-[var(--goms-success)]"
+                    : running
+                      ? "bg-[var(--goms-warning)]"
+                      : "bg-[var(--goms-text-disabled)]"
+                }
+              `}
+            />
+
+            <span>
+              {
+                streamConnected
+                  ? "SSE 연결됨"
+                  : running
+                    ? "SSE 연결 대기"
+                    : "대기"
+              }
+            </span>
           </span>
         </div>
       </div>
 
-      <ChatMessageList />
 
-      <RagContextPanel />
+      <div
+        className="
+          flex
+          min-h-0
+          min-w-0
+          flex-1
+          flex-col
+        "
+      >
+        <ChatMessageList />
 
-      <AgentProgress />
+        <RagContextPanel />
 
-      <ChatInput />
+        <AgentProgress />
+      </div>
 
+
+      <div
+        className="
+          shrink-0
+        "
+      >
+        <ChatInput />
+      </div>
     </div>
   )
 }
+
 
 function getStatusText(
   status: string
@@ -174,5 +253,32 @@ function getStatusText(
     case "IDLE":
     default:
       return "준비됨"
+  }
+}
+
+
+function getStatusClassName(
+  status: string
+): string {
+
+  switch (
+    status
+  ) {
+
+    case "RUNNING":
+      return "font-semibold text-primary"
+
+    case "WAITING_APPROVAL":
+      return "font-semibold text-[var(--goms-warning)]"
+
+    case "COMPLETED":
+      return "font-semibold text-[var(--goms-success)]"
+
+    case "FAILED":
+      return "font-semibold text-destructive"
+
+    case "IDLE":
+    default:
+      return "font-medium text-muted-foreground"
   }
 }

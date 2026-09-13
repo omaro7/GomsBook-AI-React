@@ -10,6 +10,10 @@ import type {
   RagContext
 } from "@/models/RagContext"
 
+import type {
+  RagContextPayload
+} from "@/models/RagContextPayload"
+
 interface RagState {
 
   contexts: RagContext[]
@@ -68,6 +72,7 @@ export const useRagStore =
             case "RAG_STARTED": {
 
               set({
+                contexts: [],
                 running: true
               })
 
@@ -76,16 +81,17 @@ export const useRagStore =
 
             case "RAG_CONTEXT": {
 
-              const text =
-                event.text ||
-                event.content ||
-                ""
+              const payload = event.data as RagContextPayload | null | undefined
+
+              if (!payload) return
 
               if (
-                !text.trim()
-              ) {
-                return
-              }
+                typeof payload.text !== "string"
+              ) return
+
+              const text = payload.text.trim()
+
+              if (!text) return
 
               get()
                 .addContext({
@@ -93,16 +99,16 @@ export const useRagStore =
                     event.runId,
 
                   title:
-                    event.title ||
+                    payload.title?.trim() ||
                     "RAG Context",
 
                   text,
 
                   sourcePath:
-                    event.sourcePath,
+                    payload.sourcePath ?? null,
 
                   score:
-                    event.score,
+                    payload.score ?? null,
 
                   createdAt:
                     event.timestamp ||

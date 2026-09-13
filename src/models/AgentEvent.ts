@@ -36,11 +36,5 @@ export interface AgentEvent<T = unknown> {
 
   fileName?: string | null
 
-  text?: string | null
-
-  sourcePath?: string | null
-
-  score?: number | null
-
-  timestamp?: string
+  timestamp?: string | null
 }

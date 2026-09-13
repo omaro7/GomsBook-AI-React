@@ -18,6 +18,7 @@ import {
   agentEventStream
 } from "@/services/agentEventStream"
 
+
 export function handleAgentEvent(
   event: AgentEvent
 ): void {
@@ -40,27 +41,46 @@ export function handleAgentEvent(
       event
     )
 
+  if (
+    isTerminalEvent(
+      event
+    )
+  ) {
+
+    disconnectAgentEventStream()
+  }
+}
+
+
+function isTerminalEvent(
+  event: AgentEvent
+): boolean {
+
   switch (
     event.type
   ) {
 
     case "APPROVAL_EXPIRED":
     case "AGENT_COMPLETED":
-    case "AGENT_FAILED": {
+    case "AGENT_FAILED":
 
-      agentEventStream.disconnect()
+      return true
 
-      useAgentStore
-        .getState()
-        .setStreamConnected(
-          false
-        )
 
-      break
-    }
+    default:
 
-    default: {
-      break
-    }
+      return false
   }
+}
+
+
+function disconnectAgentEventStream(): void {
+
+  agentEventStream.disconnect()
+
+  useAgentStore
+    .getState()
+    .setStreamConnected(
+      false
+    )
 }

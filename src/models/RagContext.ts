@@ -11,4 +11,12 @@ export interface RagContext {
   score?: number | null
 
   createdAt: string
+
+  chunkId?: string | null
+
+  heading?: string | null
+
+  type?: string | null
+
+  sequence?: number | null
 }

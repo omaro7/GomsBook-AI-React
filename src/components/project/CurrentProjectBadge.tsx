@@ -14,26 +14,62 @@ export function CurrentProjectBadge() {
         state.currentProjectName
     )
 
-  if (
-    currentProjectName.trim().length === 0
-  ) {
-    return null
+  const hasCurrentProject =
+    currentProjectName
+      .trim()
+      .length > 0
+
+  if (!hasCurrentProject) {
+
+    return (
+      <span
+        className="
+          inline-flex
+          min-w-0
+          items-center
+          gap-1.5
+          rounded-[var(--goms-radius-round)]
+          border
+          border-border
+          bg-[var(--goms-surface-subtle)]
+          px-2.5
+          py-1
+          text-[11px]
+          font-semibold
+          text-muted-foreground
+        "
+      >
+        <FolderOpen
+          className="
+            size-3
+            shrink-0
+          "
+        />
+
+        <span>
+          프로젝트 없음
+        </span>
+      </span>
+    )
   }
 
   return (
-    <div
+    <span
       className="
         inline-flex
         min-w-0
-        max-w-52
+        max-w-[260px]
         items-center
         gap-1.5
-        rounded-full
+        rounded-[var(--goms-radius-round)]
         border
-        bg-muted/50
+        border-primary/15
+        bg-[var(--goms-primary-soft)]
         px-2.5
         py-1
-        text-xs
+        text-[11px]
+        font-bold
+        text-primary
       "
       title={
         currentProjectName
@@ -44,13 +80,13 @@ export function CurrentProjectBadge() {
           size-1.5
           shrink-0
           rounded-full
-          bg-green-500
+          bg-primary
         "
       />
 
       <FolderOpen
         className="
-          size-3.5
+          size-3
           shrink-0
         "
       />
@@ -58,13 +94,12 @@ export function CurrentProjectBadge() {
       <span
         className="
           truncate
-          font-medium
         "
       >
         {
           currentProjectName
         }
       </span>
-    </div>
+    </span>
   )
 }

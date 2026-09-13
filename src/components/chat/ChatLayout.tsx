@@ -62,8 +62,12 @@ export function ChatLayout() {
         h-screen
         min-h-0
         justify-center
-        bg-background
+        overflow-hidden
+        px-5
+        py-4
         text-foreground
+        max-lg:px-3
+        max-lg:py-2
       "
     >
       <div
@@ -72,11 +76,11 @@ export function ChatLayout() {
           h-full
           min-h-0
           w-fit
-          border-l
-          border-r
+          max-w-full
+          gap-5
         "
       >
-        <div
+        <section
           className="
             flex
             h-full
@@ -84,6 +88,14 @@ export function ChatLayout() {
             w-[1024px]
             min-w-0
             flex-col
+            overflow-hidden
+            rounded-[var(--goms-radius-panel)]
+            border
+            border-border
+            bg-card
+            shadow-[var(--goms-shadow-lg)]
+            max-xl:w-[900px]
+            max-lg:w-full
           "
         >
           <ChatHeader />
@@ -92,12 +104,19 @@ export function ChatLayout() {
             configError && (
               <div
                 className="
-                  border-b
+                  mx-4
+                  mt-3
+                  rounded-[var(--goms-radius-md)]
+                  border
+                  border-destructive/20
+                  bg-destructive/5
                   px-4
-                  py-2
+                  py-3
+                  text-left
                   text-sm
                   text-destructive
                 "
+                role="alert"
               >
                 {configError}
               </div>
@@ -107,14 +126,24 @@ export function ChatLayout() {
           <main
             className="
               min-h-0
+              min-w-0
               flex-1
             "
           >
             <ChatPanel />
           </main>
-        </div>
+        </section>
 
-        <CurrentProjectPanel />
+        <div
+          className="
+            h-full
+            min-h-0
+            shrink-0
+            max-lg:hidden
+          "
+        >
+          <CurrentProjectPanel />
+        </div>
       </div>
     </div>
   )

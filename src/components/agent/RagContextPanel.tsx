@@ -1,15 +1,9 @@
 import {
-  BookOpen,
-  CheckCircle2,
-  ChevronDown,
-  ChevronRight,
+  BookOpenText,
   FileText,
-  LoaderCircle
+  LoaderCircle,
+  Search
 } from "lucide-react"
-
-import {
-  useState
-} from "react"
 
 import {
   useRagStore
@@ -19,92 +13,219 @@ export function RagContextPanel() {
 
   const contexts =
     useRagStore(
-      state => state.contexts
+      state =>
+        state.contexts
     )
 
   const running =
     useRagStore(
-      state => state.running
+      state =>
+        state.running
     )
 
+  const hasContexts =
+    contexts.length > 0
+
   if (
-    contexts.length === 0 &&
-    !running
+    !running &&
+    !hasContexts
   ) {
+
     return null
   }
 
   return (
     <div
       className="
+        shrink-0
         border-t
-        bg-muted/10
-        px-4
-        py-3
+        border-border/80
+        bg-[var(--goms-surface-subtle)]
+        px-5
+        py-4
+        max-sm:px-3
+        max-sm:py-3
       "
     >
-      <div
+      <section
         className="
-          mx-auto
-          flex
-          max-w-5xl
-          flex-col
-          gap-3
+          overflow-hidden
+          rounded-[var(--goms-radius-lg)]
+          border
+          border-[color-mix(in_srgb,var(--goms-violet)_18%,var(--goms-border))]
+          bg-card
+          shadow-[var(--goms-shadow-xs)]
         "
       >
         <div
           className="
             flex
             items-center
-            gap-2
-            text-sm
-            font-medium
+            justify-between
+            gap-3
+            border-b
+            border-border/80
+            bg-[color-mix(in_srgb,var(--goms-violet)_6%,var(--goms-surface))]
+            px-4
+            py-3
           "
         >
-          {
-            running
-              ? (
-                <LoaderCircle
-                  className="
-                    h-4
-                    w-4
-                    animate-spin
-                  "
-                />
-              )
-              : (
-                <CheckCircle2
-                  className="
-                    h-4
-                    w-4
-                  "
-                />
-              )
-          }
-
-          <BookOpen
+          <div
             className="
-              h-4
-              w-4
+              flex
+              min-w-0
+              items-center
+              gap-3
             "
-          />
-
-          <span>
-            {
-              running
-                ? "RAG 문맥을 검색하고 있습니다."
-                : `RAG 문맥 ${contexts.length}건`
-            }
-          </span>
-        </div>
-
-        {
-          contexts.length > 0 && (
+          >
             <div
               className="
                 flex
+                size-9
+                shrink-0
+                items-center
+                justify-center
+                rounded-[var(--goms-radius-sm)]
+                bg-[color-mix(in_srgb,var(--goms-violet)_10%,transparent)]
+                text-[var(--goms-violet)]
+              "
+            >
+              {
+                running
+                  ? (
+                    <LoaderCircle
+                      className="
+                        size-4
+                        animate-spin
+                      "
+                    />
+                  )
+                  : (
+                    <BookOpenText
+                      className="
+                        size-4
+                      "
+                    />
+                  )
+              }
+            </div>
+
+
+            <div
+              className="
+                min-w-0
+              "
+            >
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+                "
+              >
+                <h3
+                  className="
+                    text-sm
+                    font-bold
+                    text-foreground
+                  "
+                >
+                  RAG Context
+                </h3>
+
+                {
+                  running && (
+                    <span
+                      className="
+                        rounded-[var(--goms-radius-round)]
+                        bg-[color-mix(in_srgb,var(--goms-violet)_10%,transparent)]
+                        px-2
+                        py-0.5
+                        text-[10px]
+                        font-bold
+                        text-[var(--goms-violet)]
+                      "
+                    >
+                      검색 중
+                    </span>
+                  )
+                }
+              </div>
+
+              <p
+                className="
+                  mt-0.5
+                  text-[11px]
+                  text-muted-foreground
+                "
+              >
+                현재 질의와 관련된 프로젝트 문서
+              </p>
+            </div>
+          </div>
+
+
+          {
+            hasContexts && (
+              <span
+                className="
+                  shrink-0
+                  rounded-[var(--goms-radius-round)]
+                  bg-[var(--goms-primary-soft)]
+                  px-2.5
+                  py-1
+                  text-[11px]
+                  font-bold
+                  text-primary
+                "
+              >
+                {
+                  contexts.length
+                }개
+              </span>
+            )
+          }
+        </div>
+
+
+        {
+          running &&
+          !hasContexts && (
+            <div
+              className="
+                flex
+                items-center
+                gap-3
+                px-4
+                py-4
+                text-sm
+                text-muted-foreground
+              "
+            >
+              <Search
+                className="
+                  size-4
+                  shrink-0
+                  text-[var(--goms-violet)]
+                "
+              />
+
+              관련 문서를 검색하고 있습니다.
+            </div>
+          )
+        }
+
+
+        {
+          hasContexts && (
+            <div
+              className="
+                flex
+                max-h-[360px]
                 flex-col
                 gap-2
+                overflow-y-auto
+                p-3
               "
             >
               {
@@ -115,13 +236,13 @@ export function RagContextPanel() {
                   ) => (
                     <RagContextItem
                       key={
-                        `${context.runId}-${index}`
+                        createContextKey(
+                          context.sourcePath,
+                          index
+                        )
                       }
-                      title={
-                        context.title
-                      }
-                      text={
-                        context.text
+                      index={
+                        index
                       }
                       sourcePath={
                         context.sourcePath
@@ -129,192 +250,205 @@ export function RagContextPanel() {
                       score={
                         context.score
                       }
+                      content={
+                        context.text
+                      }
                     />
                   )
                 )
               }
+
             </div>
           )
         }
-      </div>
+      </section>
     </div>
   )
 }
 
+
 interface RagContextItemProps {
 
-  title: string
+  index: number
 
-  text: string
+  sourcePath?: string | null
 
-  sourcePath?:
-    string | null
+  score?: number | null
 
-  score?:
-    number | null
+  content?: string | null
 }
 
 function RagContextItem({
-  title,
-  text,
+  index,
   sourcePath,
-  score
+  score,
+  content
 }: RagContextItemProps) {
 
-  const [
-    expanded,
-    setExpanded
-  ] = useState(false)
-
   return (
-    <div
+    <article
       className="
-        overflow-hidden
-        rounded-md
+        rounded-[var(--goms-radius-md)]
         border
-        bg-background
+        border-border
+        bg-[var(--goms-surface-subtle)]
+        px-4
+        py-3
+        transition-colors
+        hover:border-primary/20
+        hover:bg-[var(--goms-primary-soft)]
       "
     >
-      <button
-        type="button"
-        onClick={
-          () =>
-            setExpanded(
-              value => !value
-            )
-        }
+      <div
         className="
           flex
-          w-full
-          items-center
-          gap-2
-          px-3
-          py-2
-          text-left
-          hover:bg-muted/50
+          items-start
+          justify-between
+          gap-3
         "
       >
-        {
-          expanded
-            ? (
-              <ChevronDown
-                className="
-                  h-4
-                  w-4
-                  shrink-0
-                "
-              />
-            )
-            : (
-              <ChevronRight
-                className="
-                  h-4
-                  w-4
-                  shrink-0
-                "
-              />
-            )
-        }
-
         <div
           className="
+            flex
             min-w-0
-            flex-1
+            items-start
+            gap-2.5
           "
         >
           <div
             className="
-              truncate
-              text-sm
-              font-medium
+              flex
+              size-7
+              shrink-0
+              items-center
+              justify-center
+              rounded-[var(--goms-radius-sm)]
+              bg-[color-mix(in_srgb,var(--goms-violet)_10%,transparent)]
+              text-[var(--goms-violet)]
             "
           >
-            {title}
+            <FileText
+              className="
+                size-3.5
+              "
+            />
           </div>
 
-          {
-            sourcePath && (
-              <div
-                className="
-                  mt-0.5
-                  flex
-                  items-center
-                  gap-1
-                  text-xs
-                  text-muted-foreground
-                "
-              >
-                <FileText
-                  className="
-                    h-3
-                    w-3
-                    shrink-0
-                  "
-                />
 
-                <span
-                  className="
-                    truncate
-                  "
-                >
-                  {sourcePath}
-                </span>
-              </div>
-            )
-          }
-        </div>
-
-        {
-          score != null && (
-            <div
-              className="
-                shrink-0
-                rounded
-                bg-muted
-                px-2
-                py-1
-                text-xs
-                tabular-nums
-                text-muted-foreground
-              "
-            >
-              {formatScore(score)}
-            </div>
-          )
-        }
-      </button>
-
-      {
-        expanded && (
           <div
             className="
-              border-t
-              px-3
-              py-3
+              min-w-0
             "
           >
-            <pre
+            <div
               className="
-                whitespace-pre-wrap
-                break-words
-                font-sans
-                text-sm
-                leading-6
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-[0.06em]
                 text-muted-foreground
               "
             >
-              {text}
-            </pre>
+              Context {
+                index + 1
+              }
+            </div>
+
+            <div
+              className="
+                mt-0.5
+                truncate
+                font-mono
+                text-[11px]
+                font-semibold
+                text-foreground
+              "
+              title={sourcePath ?? undefined}
+            >
+              {
+                sourcePath ||
+                "프로젝트 문서"
+              }
+            </div>
           </div>
+        </div>
+
+
+        {
+          typeof score ===
+          "number" && (
+            <span
+              className="
+                shrink-0
+                rounded-[var(--goms-radius-round)]
+                bg-[var(--goms-primary-soft)]
+                px-2
+                py-0.5
+                font-mono
+                text-[10px]
+                font-bold
+                text-primary
+              "
+              title="RAG similarity score"
+            >
+              {
+                formatScore(
+                  score
+                )
+              }
+            </span>
+          )
+        }
+      </div>
+
+
+      {
+        content && (
+          <p
+            className="
+              mt-3
+              whitespace-pre-wrap
+              break-words
+              text-left
+              text-xs
+              leading-5
+              text-[var(--goms-text-secondary)]
+            "
+          >
+            {
+              content
+            }
+          </p>
         )
       }
-    </div>
+    </article>
   )
 }
+
+
+function createContextKey(
+  sourcePath: string | null | undefined,
+  index: number
+): string {
+
+  return `${sourcePath ?? "rag-context"}-${index}`
+}
+
 
 function formatScore(
   score: number
 ): string {
 
-  return score.toFixed(4)
+  if (
+    !Number.isFinite(
+      score
+    )
+  ) {
+
+    return "-"
+  }
+
+  return score.toFixed(
+    3
+  )
 }

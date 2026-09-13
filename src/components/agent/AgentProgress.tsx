@@ -1,86 +1,201 @@
 import {
   CheckCircle2,
-  CircleX,
+  CircleAlert,
   LoaderCircle,
-  ShieldAlert,
-  Wrench
+  Settings2,
+  XCircle
 } from "lucide-react"
 
 import {
   ApprovalCard
 } from "@/components/agent/ApprovalCard"
 
-import type {
-  ToolCall
-} from "@/models/ToolCall"
-
 import {
   useAgentStore
 } from "@/stores/agentStore"
 
+import type {
+  ToolCall
+} from "@/models/ToolCall"
+
 export function AgentProgress() {
-
-  const running =
-    useAgentStore(
-      state => state.running
-    )
-
-  const status =
-    useAgentStore(
-      state => state.status
-    )
 
   const toolCalls =
     useAgentStore(
-      state => state.toolCalls
+      state =>
+        state.toolCalls
     )
 
   const approvals =
     useAgentStore(
-      state => state.approvals
+      state =>
+        state.approvals
     )
 
   const error =
     useAgentStore(
-      state => state.error
+      state =>
+        state.error
     )
 
-  const visible =
-    running ||
-    toolCalls.length > 0 ||
-    approvals.length > 0 ||
-    status === "FAILED"
+  const hasToolCalls =
+    toolCalls.length > 0
 
-  if (!visible) {
+  const hasApprovals =
+    approvals.length > 0
+
+  const hasError =
+    Boolean(
+      error
+    )
+
+  const hasContent =
+    hasToolCalls ||
+    hasApprovals ||
+    hasError
+
+  if (!hasContent) {
+
     return null
   }
 
   return (
     <div
       className="
+        shrink-0
         border-t
-        bg-muted/20
-        px-4
-        py-3
+        border-border/80
+        bg-[var(--goms-surface-subtle)]
+        px-5
+        py-4
+        max-sm:px-3
+        max-sm:py-3
       "
     >
       <div
         className="
-          mx-auto
           flex
-          max-w-5xl
           flex-col
-          gap-3
+          gap-4
         "
       >
-        <AgentStatus
-          status={status}
-          approvalCount={approvals.length}
-        />
+        {
+          hasToolCalls && (
+            <section
+              className="
+                rounded-[var(--goms-radius-lg)]
+                border
+                border-border
+                bg-card
+                p-4
+                shadow-[var(--goms-shadow-xs)]
+              "
+            >
+              <div
+                className="
+                  mb-3
+                  flex
+                  items-center
+                  justify-between
+                  gap-3
+                "
+              >
+                <div
+                  className="
+                    flex
+                    items-center
+                    gap-2
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      size-8
+                      items-center
+                      justify-center
+                      rounded-[var(--goms-radius-sm)]
+                      bg-[var(--goms-primary-soft)]
+                      text-primary
+                    "
+                  >
+                    <Settings2
+                      className="
+                        size-4
+                      "
+                    />
+                  </div>
+
+                  <div>
+                    <h3
+                      className="
+                        text-sm
+                        font-bold
+                        text-foreground
+                      "
+                    >
+                      Tool 실행
+                    </h3>
+
+                    <p
+                      className="
+                        mt-0.5
+                        text-[11px]
+                        text-muted-foreground
+                      "
+                    >
+                      Agent 작업 진행 상태
+                    </p>
+                  </div>
+                </div>
+
+                <span
+                  className="
+                    rounded-[var(--goms-radius-round)]
+                    bg-[var(--goms-primary-soft)]
+                    px-2.5
+                    py-1
+                    text-[11px]
+                    font-bold
+                    text-primary
+                  "
+                >
+                  {
+                    toolCalls.length
+                  }개
+                </span>
+              </div>
+
+
+              <div
+                className="
+                  flex
+                  flex-col
+                  gap-2
+                "
+              >
+                {
+                  toolCalls.map(
+                    toolCall => (
+                      <ToolCallItem
+                        key={
+                          toolCall.toolCallId
+                        }
+                        toolCall={
+                          toolCall
+                        }
+                      />
+                    )
+                  )
+                }
+              </div>
+            </section>
+          )
+        }
+
 
         {
-          approvals.length > 0 && (
-            <div
+          hasApprovals && (
+            <section
               className="
                 flex
                 flex-col
@@ -91,62 +206,76 @@ export function AgentProgress() {
                 approvals.map(
                   approval => (
                     <ApprovalCard
-                      key={approval.approvalId}
-                      approval={approval}
+                      key={
+                        approval.approvalId
+                      }
+                      approval={
+                        approval
+                      }
                     />
                   )
                 )
               }
-            </div>
+            </section>
           )
         }
 
-        {
-          toolCalls.length > 0 && (
-            <div
-              className="
-                flex
-                flex-col
-                gap-2
-              "
-            >
-              {
-                toolCalls.map(
-                  toolCall => (
-                    <ToolProgress
-                      key={toolCall.toolCallId}
-                      toolCall={toolCall}
-                    />
-                  )
-                )
-              }
-            </div>
-          )
-        }
 
         {
-          error && (
+          hasError && (
             <div
               className="
                 flex
                 items-start
-                gap-2
-                text-sm
-                text-destructive
+                gap-3
+                rounded-[var(--goms-radius-md)]
+                border
+                border-destructive/20
+                bg-destructive/5
+                px-4
+                py-3
+                text-left
               "
+              role="alert"
             >
-              <CircleX
+              <CircleAlert
                 className="
                   mt-0.5
-                  h-4
-                  w-4
+                  size-4
                   shrink-0
+                  text-destructive
                 "
               />
 
-              <span>
-                {error}
-              </span>
+              <div
+                className="
+                  min-w-0
+                "
+              >
+                <div
+                  className="
+                    text-xs
+                    font-bold
+                    text-destructive
+                  "
+                >
+                  Agent 오류
+                </div>
+
+                <div
+                  className="
+                    mt-1
+                    break-words
+                    text-xs
+                    leading-5
+                    text-destructive
+                  "
+                >
+                  {
+                    error
+                  }
+                </div>
+              </div>
             </div>
           )
         }
@@ -155,181 +284,53 @@ export function AgentProgress() {
   )
 }
 
-interface AgentStatusProps {
-  status: string
-  approvalCount: number
-}
 
-function AgentStatus({
-  status,
-  approvalCount
-}: AgentStatusProps) {
-
-  if (
-    status === "WAITING_APPROVAL"
-  ) {
-
-    return (
-      <div
-        className="
-          flex
-          items-center
-          gap-2
-          text-sm
-          text-amber-600
-        "
-      >
-        <ShieldAlert
-          className="
-            h-4
-            w-4
-          "
-        />
-
-        <span>
-          사용자 승인을 기다리고 있습니다.
-          {
-            approvalCount > 1 &&
-            ` (${approvalCount}건)`
-          }
-        </span>
-      </div>
-    )
-  }
-
-  if (
-    status === "FAILED"
-  ) {
-
-    return (
-      <div
-        className="
-          flex
-          items-center
-          gap-2
-          text-sm
-          text-destructive
-        "
-      >
-        <CircleX
-          className="
-            h-4
-            w-4
-          "
-        />
-
-        <span>
-          Agent 실행에 실패했습니다.
-        </span>
-      </div>
-    )
-  }
-
-  if (
-    status === "EXPIRED"
-    ) {
-
-    return (
-        <div
-        className="
-            flex
-            items-center
-            gap-2
-            text-sm
-            text-amber-600
-        "
-        >
-        <ShieldAlert
-            className="
-            h-4
-            w-4
-            "
-        />
-
-        <span>
-            승인 대기 시간이 만료되었습니다.
-        </span>
-        </div>
-    )
-  }
-
-  if (
-    status === "COMPLETED"
-  ) {
-
-    return (
-      <div
-        className="
-          flex
-          items-center
-          gap-2
-          text-sm
-          text-muted-foreground
-        "
-      >
-        <CheckCircle2
-          className="
-            h-4
-            w-4
-          "
-        />
-
-        <span>
-          Agent 작업이 완료되었습니다.
-        </span>
-      </div>
-    )
-  }
-
-  return (
-    <div
-      className="
-        flex
-        items-center
-        gap-2
-        text-sm
-        text-muted-foreground
-      "
-    >
-      <LoaderCircle
-        className="
-          h-4
-          w-4
-          animate-spin
-        "
-      />
-
-      <span>
-        GomsBook AI가 작업을 진행하고 있습니다.
-      </span>
-    </div>
-  )
-}
-
-interface ToolProgressProps {
+interface ToolCallItemProps {
   toolCall: ToolCall
 }
 
-function ToolProgress({
+
+function ToolCallItem({
   toolCall
-}: ToolProgressProps) {
+}: ToolCallItemProps) {
+
+  const status =
+    toolCall.status
 
   return (
     <div
       className="
         flex
         items-start
-        gap-2
-        rounded-md
+        gap-3
+        rounded-[var(--goms-radius-md)]
         border
-        bg-background
+        border-border
+        bg-[var(--goms-surface-subtle)]
         px-3
-        py-2
+        py-3
       "
     >
-      <ToolStatusIcon
-        status={toolCall.status}
-      />
+      <div
+        className={`
+          flex
+          size-8
+          shrink-0
+          items-center
+          justify-center
+          rounded-[var(--goms-radius-sm)]
+          ${getToolStatusIconContainerClassName(
+            status
+          )}
+        `}
+      >
+        {
+          getToolStatusIcon(
+            status
+          )
+        }
+      </div>
+
 
       <div
         className="
@@ -340,59 +341,114 @@ function ToolProgress({
         <div
           className="
             flex
+            min-w-0
             items-center
-            gap-2
+            justify-between
+            gap-3
           "
         >
-          <Wrench
-            className="
-              h-3.5
-              w-3.5
-              text-muted-foreground
-            "
-          />
-
           <span
             className="
               truncate
-              text-sm
-              font-medium
+              font-mono
+              text-xs
+              font-semibold
+              text-foreground
             "
+            title={
+              toolCall.toolName
+            }
           >
-            {toolCall.toolName}
+            {
+              toolCall.toolName
+            }
+          </span>
+
+          <span
+            className={`
+              shrink-0
+              rounded-[var(--goms-radius-round)]
+              px-2
+              py-0.5
+              text-[10px]
+              font-bold
+              ${getToolStatusBadgeClassName(
+                status
+              )}
+            `}
+          >
+            {
+              getToolStatusText(
+                status
+              )
+            }
           </span>
         </div>
 
-        <div
-          className="
-            mt-1
-            text-xs
-            text-muted-foreground
-          "
-        >
-          {getToolStatusText(toolCall)}
-        </div>
+
+        {
+          toolCall.error && (
+            <div
+              className="
+                mt-2
+                break-words
+                rounded-[var(--goms-radius-sm)]
+                bg-destructive/5
+                px-3
+                py-2
+                text-xs
+                leading-5
+                text-destructive
+              "
+            >
+              {
+                toolCall.error
+              }
+            </div>
+          )
+        }
       </div>
     </div>
   )
 }
 
-function ToolStatusIcon({
-  status
-}: {
-  status: ToolCall["status"]
-}) {
 
-  switch (status) {
+function getToolStatusText(
+  status: ToolCall["status"]
+): string {
+
+  switch (
+    status
+  ) {
+
+    case "RUNNING":
+      return "실행 중"
+
+    case "SUCCESS":
+      return "완료"
+
+    case "ERROR":
+      return "실패"
+
+    default:
+      return "대기"
+  }
+}
+
+
+function getToolStatusIcon(
+  status: ToolCall["status"]
+) {
+
+  switch (
+    status
+  ) {
 
     case "RUNNING":
       return (
         <LoaderCircle
           className="
-            mt-0.5
-            h-4
-            w-4
-            shrink-0
+            size-4
             animate-spin
           "
         />
@@ -402,45 +458,97 @@ function ToolStatusIcon({
       return (
         <CheckCircle2
           className="
-            mt-0.5
-            h-4
-            w-4
-            shrink-0
+            size-4
           "
         />
       )
 
     case "ERROR":
       return (
-        <CircleX
+        <XCircle
           className="
-            mt-0.5
-            h-4
-            w-4
-            shrink-0
-            text-destructive
+            size-4
+          "
+        />
+      )
+
+    default:
+      return (
+        <Settings2
+          className="
+            size-4
           "
         />
       )
   }
 }
 
-function getToolStatusText(
-  toolCall: ToolCall
+
+function getToolStatusIconContainerClassName(
+  status: ToolCall["status"]
 ): string {
 
-  switch (toolCall.status) {
+  switch (
+    status
+  ) {
 
     case "RUNNING":
-      return "도구를 실행하고 있습니다."
+      return `
+        bg-[var(--goms-primary-soft)]
+        text-primary
+      `
 
     case "SUCCESS":
-      return "도구 실행이 완료되었습니다."
+      return `
+        bg-[var(--goms-success-soft)]
+        text-[var(--goms-success)]
+      `
 
     case "ERROR":
-      return (
-        toolCall.error ||
-        "도구 실행에 실패했습니다."
-      )
+      return `
+        bg-[var(--goms-danger-soft)]
+        text-destructive
+      `
+
+    default:
+      return `
+        bg-muted
+        text-muted-foreground
+      `
+  }
+}
+
+
+function getToolStatusBadgeClassName(
+  status: ToolCall["status"]
+): string {
+
+  switch (
+    status
+  ) {
+
+    case "RUNNING":
+      return `
+        bg-[var(--goms-primary-soft)]
+        text-primary
+      `
+
+    case "SUCCESS":
+      return `
+        bg-[var(--goms-success-soft)]
+        text-[var(--goms-success)]
+      `
+
+    case "ERROR":
+      return `
+        bg-[var(--goms-danger-soft)]
+        text-destructive
+      `
+
+    default:
+      return `
+        bg-muted
+        text-muted-foreground
+      `
   }
 }
