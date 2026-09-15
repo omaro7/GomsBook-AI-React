@@ -12,12 +12,56 @@ import {
 
 function normalizeMarkdown(content: string) {
   return content
+    .replace(
+      /\$\\color\{(red|read)\}\{\\(downarrow|downnarrow|uparrow)\s*([^}]*)\}\$/gi,
+      (
+        _,
+        _color,
+        arrow,
+        value
+      ) => {
+        const symbol =
+          arrow.toLowerCase() === "uparrow"
+            ? "↑"
+            : "↓"
+
+        return `[${symbol} ${String(value).trim()}](#gomsbook-red)`
+      }
+    )
+    .replace(
+      /\$\\color\{green\}\{\\(downarrow|downnarrow|uparrow)\s*([^}]*)\}\$/gi,
+      (
+        _,
+        arrow,
+        value
+      ) => {
+        const symbol =
+          arrow.toLowerCase() === "uparrow"
+            ? "↑"
+            : "↓"
+
+        return `[${symbol} ${String(value).trim()}](#gomsbook-green)`
+      }
+    )
+    .replace(
+      /\$\\color\{green\}\{\\text\{↑\}\}\$/gi,
+      "[↑](#gomsbook-green)"
+    )
+    .replace(
+      /\$\\color\{(red|read)\}\{\\text\{↓\}\}\$/gi,
+      "[↓](#gomsbook-red)"
+    )
+    .replace(/\$\\downarrow\$/gi, "↓")
+    .replace(/\$\\uparrow\$/gi, "↑")
+    .replace(/\$downnarrow\$/gi, "↓")
+    .replace(/\$uparrow\$/gi, "↑")
     .replace(/\$\\rightarrow\$/g, "→")
     .replace(/\$\\leftarrow\$/g, "←")
     .replace(/\$\\leftrightarrow\$/g, "↔")
     .replace(/\$\\Rightarrow\$/g, "⇒")
     .replace(/\$\\Leftarrow\$/g, "⇐")
     .replace(/\$\\checkmark\$/g, "✓")
+    .replace(/\$\\Delta\$/g, "Δ")
 }
 
 export function ChatMessageList() {
@@ -225,6 +269,55 @@ export function ChatMessageList() {
                               remarkPlugins={[
                                 remarkGfm
                               ]}
+                              components={{
+                                a: ({
+                                  href,
+                                  children,
+                                  ...props
+                                }) => {
+
+                                  if (
+                                    href ===
+                                    "#gomsbook-red"
+                                  ) {
+                                    return (
+                                      <span
+                                        className="
+                                          font-semibold
+                                          text-red-600
+                                        "
+                                      >
+                                        {children}
+                                      </span>
+                                    )
+                                  }
+
+                                  if (
+                                    href ===
+                                    "#gomsbook-green"
+                                  ) {
+                                    return (
+                                      <span
+                                        className="
+                                          font-semibold
+                                          text-green-600
+                                        "
+                                      >
+                                        {children}
+                                      </span>
+                                    )
+                                  }
+
+                                  return (
+                                    <a
+                                      href={href}
+                                      {...props}
+                                    >
+                                      {children}
+                                    </a>
+                                  )
+                                }
+                              }}
                             >
                               {
                                 normalizeMarkdown(
