@@ -788,3 +788,123 @@ code:not(pre code) {
   }
 
 }
+
+/* =========================================================
+ * Print
+ * ========================================================= */
+
+@media print {
+
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+
+  html,
+  body {
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  body {
+    color: #152033 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box !important;
+  }
+
+  .rag-lab-header {
+    display: none !important;
+  }
+
+  .rag-print-hidden {
+    display: none !important;
+  }
+
+  .rag-print-page-break {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .rag-print-avoid-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  main {
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+
+    /*
+     * @page 15mm 안쪽에 추가 안전 여백.
+     * 좌우를 동일하게 줘야 PDF가 한쪽으로 치우치지 않습니다.
+     */
+    padding: 0 3mm !important;
+
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  main > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  main section,
+  main article {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  main .grid > * {
+    min-width: 0 !important;
+  }
+
+  .rag-report-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+
+    /*
+     * 이전 calc(100% - 2mm), margin-right 제거.
+     * 전체 좌우 여백은 main에서 일괄 관리합니다.
+     */
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+  }
+
+  .rag-report-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+
+    /*
+     * PDF 가장자리에서 shadow가 잘려 보이는 현상 방지.
+     */
+    box-shadow: none !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}

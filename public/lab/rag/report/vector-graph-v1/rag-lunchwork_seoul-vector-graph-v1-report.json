@@ -1,0 +1,1533 @@
+{
+  "datasetName": "rag-golden-v1",
+  "averageScore": 0.775625,
+  "retrievalSummary": {
+    "evaluatedCases": 34,
+    "hitCount": 28,
+    "hitRateAtK": 0.8235294117647058,
+    "averageRecallAtK": 0.8235294117647058,
+    "meanReciprocalRank": 0.5514705882352942
+  },
+  "entries": [
+    {
+      "caseId": "RAG-GOLD-001",
+      "question": "서울시립미술관은 점심시간에 어떤 장점이 있는 공간으로 소개되나요?",
+      "overallScore": 0.825,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. Context 2 states that it is an open space where anyone can enter for free and visit without burden during lunch time, and Context 3 mentions that it is beneficial for busy office workers as they can sufficiently look around in about an hour."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the question by explaining that the museum is an open space that can be visited without burden during lunch due to free admission, and that it is accessible even for busy office workers within an hour."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.3,
+          "reason": "The retrieved contexts contain the necessary information to answer the question (Context 2 and Context 3), but they are buried among a large number of irrelevant contexts (Context 1, 4-12) that describe personal reflections and scenery. While the relevant information is present, the precision is low due to the high volume of noise."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The retrieved contexts cover all the key claims in the reference answer: Context 2 confirms that anyone can enter for free and it is an open space that can be visited without burden during lunch time, and Context 3 confirms that busy office workers can sufficiently look around in about an hour."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-002",
+      "question": "서울시립미술관에서 본 전시 제목은 무엇인가요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer states that the exhibition title seen at the Seoul Museum of Art was 『유영국: 산의 내 안에 있다』. This is directly supported by Context 12 (which establishes the location as the Seoul Museum of Art) and Context 4 (which explicitly names the exhibition encountered there)."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the user\u0027s question by providing the specific title of the exhibition seen at the Seoul Museum of Art."
+        },
+        {
+          "name": "context_precision",
+          "score": 1.0,
+          "reason": "The retrieved contexts provide all the necessary information to answer the question. Context 2, 9, and 12 establish the location as the Seoul Museum of Art (서울시립미술관), and Context 4 explicitly states the title of the exhibition as 『유영국: 산의 내 안에 있다』, which matches the reference answer perfectly."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The reference answer states that the exhibition seen at the Seoul Museum of Art was 『유영국: 산의 내 안에 있다』. Context 12 confirms the location was the Seoul Museum of Art, and Context 4 explicitly identifies the exhibition title as 『유영국: 산의 내 안에 있다』."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-003",
+      "question": "예전의 저자에게 덕수궁 돌담길은 어떤 의미였나요?",
+      "overallScore": 0.975,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. Context 9 mentions the author was \u0027running toward the future\u0027, Context 3 and 4 describe running with all their might to not miss the last bus, and Context 5 explicitly states that the scenery of the stone wall under the streetlights was something that had to be passed by without time to find it beautiful."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the user\u0027s question by explaining the specific meaning and perception of the Deoksugung stone wall path to the author in the past."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.9,
+          "reason": "The retrieved contexts provide all the necessary pieces of information to construct the reference answer. Context 3 mentions the need to not miss the last bus, Context 4 describes running through the Deoksugung stone wall path, and Context 5 explains that the beauty of the path was ignored in favor of passing through quickly. Context 11 explicitly links the current slow walk to the memory of running for the last bus. While the information is fragmented across several contexts, it is highly relevant and precise."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The reference answer states that for the author in the past, Deoksugung Stone Wall Path was not a space of leisure but a race against time to avoid missing the last bus. The retrieved contexts support this: Context 3 mentions the need to not miss the last bus, Context 4 describes running with all their might along the path, and Context 5 explains that the scenery was something to be passed by without time to appreciate its beauty. Context 11 further confirms the memory of running toward the last bus."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-004",
+      "question": "정동길에서 우연히 만난 음악회는 어떤 모습이었나요?",
+      "overallScore": 0.8250000000000001,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. Context 8 identifies the event as \u0027평화를 위한 화목 음악회\u0027, Context 9 describes the four cellists sitting side by side, and Context 10 specifies that it was not a fancy venue or a concert hall with hundreds of spectators."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the user\u0027s question by describing the name of the concert, the performers (four cellists), and the atmosphere/setting of the venue."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.7,
+          "reason": "The retrieved contexts contain key elements of the reference answer, such as the name of the concert (\u0027평화를 위한 화목 음악회\u0027) and the presence of four cellists. However, it misses the specific location (\u0027이화여고 앞 작은 무대\u0027) and the detail about citizens stopping to listen during their lunch break, although Context 5 mentions lunch time generally. There is also a significant amount of irrelevant noise (Contexts 1, 2, 3, 4, 6, 7)."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.6,
+          "reason": "The retrieved contexts cover the name of the concert (\u0027평화를 위한 화목 음악회\u0027) and the fact that four cellists performed. However, they fail to mention the specific location (\u0027in front of Ewha Girls\u0027 High School\u0027) and the detail that citizens spending their lunch break stopped to listen, although Context 5 mentions people heading there during lunch, it doesn\u0027t explicitly link them to the concert as the reference answer does."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-005",
+      "question": "이 책에서는 인천공항을 어떻게 소개하나요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about Incheon Airport, which is an accurate reflection of the retrieved text."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by stating that the information is not available in the provided context. In a RAG system, explicitly stating that the answer cannot be found in the source is a relevant and correct response to avoid hallucination."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "Context Precision is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "Context Recall is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 1.0,
+          "reason": "The answer correctly identifies that the information about Incheon Airport is not present in the provided context, which aligns perfectly with the reference."
+        }
+      ],
+      "retrieval": {
+        "applicable": false,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-006",
+      "question": "한여름 점심시간에 저자가 서울시립미술관으로 향하게 된 이유는 무엇인가요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. The first reason is supported by Contexts 6, 7, and 8, and the second reason is supported by Context 12."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the user\u0027s question by providing the two specific reasons why the author went to the Seoul Museum of Art during a midsummer lunch break."
+        },
+        {
+          "name": "context_precision",
+          "score": 1.0,
+          "reason": "The retrieved contexts contain all the necessary information to construct the reference answer. Specifically, Context 6, 7, and 8 directly explain that it was a hot midsummer day, walking under the sun was too much, and the author decided to walk slowly in a cool place instead of on the sweaty streets."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The retrieved contexts contain all the necessary information to support the reference answer. Context 6 establishes it was midsummer in Seoul, Context 7 mentions the difficulty of walking under the hot sun during lunch, and Context 8 explicitly states the author\u0027s thought to walk slowly in a cool place rather than on sweaty streets. Together with Context 1, these support the reason for visiting the Seoul Museum of Art."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-007",
+      "question": "유영국의 산 그림을 보며 저자는 자신의 삶을 어떻게 돌아보게 되었나요?",
+      "overallScore": 0.825,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer accurately reflects that the retrieved contexts do not mention \u0027Yoo Youngkuk\u0027 (유영국), while correctly identifying the parts of the text where the author reflects on their life and internalizes the image of the mountain. It faithfully reports the absence of the specific artist\u0027s name in the provided source material."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.5,
+          "reason": "The answer explicitly states that the provided context does not contain information about \u0027Yoo Youngkuk\u0027s paintings\u0027, but it does provide the general reflection the author had while looking at mountains. While it cannot fully answer the specific question due to missing information in the context, it is relevant in that it addresses the query and explains why a complete answer is impossible while providing the closest available information."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.8,
+          "reason": "Contexts 3, 4, and 5 directly provide the information needed to construct the reference answer, covering the simple lines/colors, the act of reflecting on life, and the realization that the mountain is within. However, Contexts 1, 2, 6, and 7 are irrelevant noise, which slightly reduces the precision score."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The retrieved contexts cover all factual claims in the reference answer: Context 3 mentions the simple lines and colors evoking the landscape in the author\u0027s heart, Context 4 explicitly states the author was looking back at their life, and Context 5 contains the specific realization that \u0027the mountain is not outside but also inside me\u0027."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.3333333333333333
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-008",
+      "question": "서울에 처음 올라왔을 때 저자는 시간이 날 때마다 무엇을 찾아다녔나요?",
+      "overallScore": 0.25,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about what the author looked for whenever they had time when they first came to Seoul. The contexts focus on the author\u0027s habit of walking during lunch breaks for health and blood sugar management, but do not mention the period when they first arrived in Seoul or searching for something specific."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.0,
+          "reason": "The answer is a refusal to answer based on missing information in the context. While it is an honest response regarding the provided data, it does not provide any of the information requested by the user\u0027s question."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "None of the retrieved contexts contain information about what the author looked for when they first came to Seoul. The contexts focus on the author\u0027s current habit of walking during lunch breaks for health and blood sugar management, which is entirely unrelated to the reference answer regarding free performances and exhibitions."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "The retrieved contexts focus on the author\u0027s habit of walking during lunch breaks for health and blood sugar management. None of the contexts mention the author moving to Seoul, studying during the day, or visiting free performances and exhibitions."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-009",
+      "question": "정동극장 무료 시사회를 본 뒤 저자가 덕수궁 돌담길을 뛰어야 했던 이유는 무엇인가요?",
+      "overallScore": 0.8999999999999999,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer accurately states that the retrieved contexts do not explicitly mention the author running along the Deoksugung Stone Wall Path, while correctly identifying the supporting details provided (it was night after the screening and the author needed to catch the last bus)."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by explaining that the specific action of \u0027running\u0027 is not explicitly mentioned, but provides the relevant context (needing to catch the last train) that explains the urgency of the situation. It is a complete and honest response based on the available information."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.8,
+          "reason": "The retrieved contexts contain all the necessary components to construct the reference answer: the event (free screening at Jeongdong Theater), the time (night), and the motivation (not missing the last bus). While the specific action of \u0027running\u0027 is not explicitly mentioned in the snippets, the causal chain is fully present. Some contexts are irrelevant (Contexts 8, 9, 10), but the core information is retrieved."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.8,
+          "reason": "The retrieved contexts cover almost all key points: the author watched a free screening at Jeongdong Theater (Context 4), it was already night (Context 4), and they had to catch the last bus/train home (Context 5). However, the specific action of \u0027running along the Deoksugung stone wall path\u0027 (덕수궁 돌담길을 뛰었다) is not explicitly mentioned in the contexts, although the path is mentioned as a chapter title (Context 1) and a description (Context 2). The causal link between the time pressure and the act of running is missing."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.3333333333333333
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-010",
+      "question": "시간이 흐른 뒤 덕수궁 돌담길을 걷는 저자의 태도는 과거와 어떻게 달라졌나요?",
+      "overallScore": 0.875,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. Context 11 explicitly states that in the past only the destination was visible, but now the scenery is seen first. Context 5 mentions becoming a \u0027person who strolls\u0027 rather than just a \u0027person who walks\u0027, and Context 9 states that the beauty of the road finally became visible."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the question by contrasting the author\u0027s past attitude (focusing only on the destination) with their current attitude (appreciating the scenery and the act of strolling), specifically explaining how their perspective on the Deoksugung stone wall path has changed."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.8,
+          "reason": "The retrieved contexts provide the core elements of the reference answer. Context 11 explicitly mentions the shift from seeing only the destination to seeing the scenery, and Context 10 describes the specific elements (trees, stones, seasonal light) that the author now notices. Context 5 highlights the transition from \u0027walking\u0027 to \u0027strolling\u0027. However, the specific detail about \u0027worrying about the last bus\u0027 mentioned in the reference answer is missing from the retrieved contexts, preventing a perfect score."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.7,
+          "reason": "The retrieved contexts support the core shift in attitude: moving from seeing only the destination (Context 11) to noticing the scenery, including trees, old stones, and seasonal light (Context 10). However, the specific detail about \u0027worrying about the last bus\u0027 (막차를 걱정하며) mentioned in the reference answer is not present in any of the retrieved contexts."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.25
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-011",
+      "question": "정동길 음악회 무대에는 몇 명의 첼리스트가 앉아 있었나요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer states that there were four cellists sitting side by side on the stage, which is directly supported by Context 2 (\u0027무대 위에는 네 명의 첼리스트가 나란히 앉아 있었다\u0027)."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the user\u0027s question by specifying the exact number of cellists on the stage."
+        },
+        {
+          "name": "context_precision",
+          "score": 1.0,
+          "reason": "Context 2 directly provides the exact answer to the question (\u0027four cellists were sitting side by side on the stage\u0027), matching the reference answer perfectly. While other contexts provide background information, the presence of the precise answer in the retrieved set makes it highly relevant."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The reference answer states that four cellists were sitting side by side on stage, and this exact information is explicitly provided in Context 2."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-012",
+      "question": "정동길에서 열린 음악회는 어떤 장소와 분위기에서 진행되었나요?",
+      "overallScore": 0.25,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about a concert on Jeongdong-gil. The contexts mention \u0027Jeongdong-gil\u0027s Afternoon\u0027 as a chapter title and various reflections on life, but nothing about a concert, its location, or its atmosphere."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.0,
+          "reason": "The answer is a refusal to answer based on missing context. It does not provide any information regarding the location or atmosphere of the concert, thus failing to address the user\u0027s question."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "None of the retrieved contexts contain any information about the concert on Jeongdong-gil, the location (in front of Ewha Girls\u0027 High School), the atmosphere, or the performers. The contexts are entirely irrelevant to the question and the reference answer."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "The retrieved contexts do not contain any information regarding the concert at Jeongdong-gil, the location (in front of Ewha Girls\u0027 High School), the name of the concert (\u0027Harmony Concert for Peace\u0027), the performers (four cellists), or the reaction of the citizens. The contexts are entirely unrelated to the reference answer."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-013",
+      "question": "서소문성지 역사박물관 내부는 저자에게 어떤 공간으로 느껴졌나요?",
+      "overallScore": 0.75,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is directly supported by Context 9, which states that the place was closer to a space for reflecting on one\u0027s heart rather than a place for gaining knowledge."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and concisely addresses the user\u0027s question about how the author perceived the interior of the Seosomun Shrine History Museum."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.6,
+          "reason": "The retrieved contexts contain some key elements of the reference answer, specifically that the museum felt more like a space for self-reflection than a place to gain knowledge (Context 9). However, it completely misses the descriptions regarding the silence, the calmness despite being in the city center, and the feeling of lowering one\u0027s voice and steps. The information is fragmented across several short snippets, making the retrieval partially useful but incomplete."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.4,
+          "reason": "The retrieved contexts support the claim that the museum felt more like a space for self-reflection than a place to gain knowledge (Context 9). However, they do not mention that the interior was quiet and calm to the point of being unbelievable for a city center, nor that it naturally made the author lower their voice and steps."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-014",
+      "question": "서소문 일대 옛 철길 건널목에서 차단기가 내려오면 어떤 소리가 들렸나요?",
+      "overallScore": 0.9,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is directly supported by Context 2, which states that when the barrier came down, a \u0027땡땡땡\u0027 bell sound rang."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and concisely addresses the user\u0027s question by specifying the exact sound (\u0027땡땡땡\u0027 bell sound) that occurred when the barrier came down at the old railroad crossing in the Seosomun area."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.6,
+          "reason": "Context 2 directly provides the answer (\u0027땡땡땡\u0027 하는 종소리), and Context 1 provides the necessary setting (철길 건널목). However, the overall precision is lowered because more than half of the retrieved contexts (Contexts 4, 5, 7, 8, 9, 11) are completely irrelevant to the specific question about the sound of the railroad crossing."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The reference answer states that a \u0027땡땡땡\u0027 bell sound rang when the barrier came down. Context 2 explicitly mentions that \u0027the barrier came down, and a \u0027땡땡땡\u0027 bell sound rang\u0027 (차단기가 내려오고, 땡땡땡\u0027 하는 종소리가 울리면), which fully supports the reference answer."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-015",
+      "question": "점심시간에 찾은 서울도서관은 저자에게 단순히 쉬어 가는 곳 이상으로 어떤 의미였나요?",
+      "overallScore": 0.25,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about the Seoul Library or the author\u0027s experience there, which is accurate as none of the retrieved contexts mention these topics."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.0,
+          "reason": "The answer is a refusal to answer based on missing context. It does not provide any information that addresses the user\u0027s question."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "None of the retrieved contexts contain any information about the Seoul Library or the author\u0027s feelings toward it. The contexts focus on the author\u0027s identity and the general themes of the book, making them completely irrelevant to the specific question."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "The retrieved contexts contain general information about the author and the themes of the book, but none of them mention the Seoul Library or its meaning to the author as described in the reference answer."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-016",
+      "question": "저자가 점심을 먹고 사무실로 바로 돌아가지 않고 걷기로 한 이유는 무엇인가요?",
+      "overallScore": 0.975,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. Context 4 mentions the high fasting blood sugar levels, Context 3 mentions the goal of lowering blood sugar, and Context 6 mentions it was for health."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the user\u0027s question by providing the specific reason why the author decided to walk instead of returning immediately to the office."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.9,
+          "reason": "The retrieved contexts contain all the necessary pieces of information to construct the reference answer: the high fasting blood sugar level (Context 4), the goal of lowering blood sugar (Context 3), and the decision to walk after lunch instead of returning to the office (Context 2, 5). While there are some redundant contexts (Context 7-10), the core information is present and highly relevant."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The retrieved contexts cover all key factual claims in the reference answer: the high fasting blood sugar level (Context 4), the goal of lowering blood sugar/managing health (Context 3, 6), and the decision to walk after lunch instead of returning immediately to the office (Context 2, 5)."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-017",
+      "question": "서울시립미술관을 다녀온 점심시간은 평소의 점심시간과 어떻게 달랐나요?",
+      "overallScore": 0.75,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. Context 2 describes the usual lunch routine (eating, having coffee, and returning to the office), and Context 3 explicitly states that the lunch time on that specific day was different."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.5,
+          "reason": "The answer acknowledges that the lunch time was different and describes the \u0027usual\u0027 routine, but it fails to explain *how* the lunch time spent at the Seoul Museum of Art was actually different. It identifies the contrast but omits the specific details of the experience requested by the question."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.8,
+          "reason": "The retrieved contexts contain almost all the necessary components to construct the reference answer. Context 2 describes the usual lunch routine, Context 3 notes that this day was different, and Context 9 explains how walking for health met culture and allowed for self-reflection. However, the specific detail about \u0027feeling the heart become lighter than blood sugar\u0027 (혈당보다 마음이 먼저 가벼워졌다) is missing from the retrieved contexts, which prevents a perfect score."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.7,
+          "reason": "The retrieved contexts cover the contrast between the usual routine (eating and returning to work with coffee) and the shift toward walking for health and self-reflection. However, the specific detail from the reference answer regarding the feeling that \u0027the heart became lighter than the blood sugar\u0027 (혈당보다 마음이 먼저 가벼워졌다) is not present in any of the retrieved contexts."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-018",
+      "question": "젊은 시절 저자에게 덕수궁 돌담길의 아름다움이 보이지 않았던 이유는 무엇인가요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. It correctly identifies that the author viewed the path as a \u0027race against time\u0027 rather than \u0027leisure\u0027 (Context 11), mentions running toward the last train/subway station with a bag and shortness of breath (Context 2, 8, 10), and explains that they only saw the destination and passed by the scenery without time to find it beautiful (Context 5, 9)."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the user\u0027s question by explaining that the author viewed the path as a \u0027race against time\u0027 rather than a place for leisure, providing specific details (running for the last train, checking the watch) to justify why the beauty of the wall was not visible at the time."
+        },
+        {
+          "name": "context_precision",
+          "score": 1.0,
+          "reason": "The retrieved contexts collectively provide all the necessary information to construct the reference answer. Context 8 mentions running with a bag, Context 10 mentions checking the watch and rushing to the subway station (implying the last train), and Context 9 explicitly states that the stone wall was a scenery to be passed by without time to feel its beauty. The information is highly relevant and precise."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The retrieved contexts cover all the key factual claims in the reference answer: running with a bag (Context 8), checking the watch multiple times (Context 10), the goal of catching the last train/subway (Context 2, 10), and the fact that the stone wall under the streetlights was a scenery passed by without time to feel its beauty (Context 9)."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-019",
+      "question": "저자가 \u0027사람은 같은 길을 걸어도 같은 길을 만나지 않는다\u0027고 이해하게 된 이유는 무엇인가요?",
+      "overallScore": 0.8250000000000001,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain the specific reason why the author came to understand the phrase. While Context 2 mentions that the author understood the phrase, and Contexts 1 and 3 describe a change in perspective (focusing on scenery/today rather than just the destination/future), the text does not explicitly link these as the \u0027reason\u0027 for understanding that specific quote."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by stating that the provided context does not contain the specific reason requested. In a RAG evaluation, admitting the absence of information when it is truly missing from the context is considered a relevant and correct response to the user\u0027s query."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.7,
+          "reason": "Contexts 1, 2, and 3 directly support the reference answer by explaining the shift from focusing on the destination (future) to focusing on the scenery (today), which is the core reason why the author feels the path has changed. However, Contexts 4 through 8 are completely irrelevant to the specific question, acting as noise and reducing the overall precision."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.6,
+          "reason": "The retrieved contexts cover the core reason: the author previously focused only on the destination (Context 1, 3) but now looks at the scenery and walks while looking at today (Context 1, 3). However, the specific details mentioned in the reference answer—such as the location being \u0027Deoksugung Stone Wall Path\u0027 and the specific elements observed like \u0027stone walls, trees, and the light of the seasons\u0027—are missing from the retrieved contexts."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-020",
+      "question": "정동길에서 저자가 음악회를 발견하게 된 직접적인 계기는 무엇이었나요?",
+      "overallScore": 0.25,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about how the author discovered the concert on Jeongdong-gil. The retrieved contexts consist only of table of contents entries and descriptions of illustrations, with no narrative text explaining the event."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.0,
+          "reason": "The answer is a refusal to answer based on the lack of information in the context. While it is an honest response regarding the provided data, it does not provide any relevant information to address the user\u0027s specific question."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "None of the retrieved contexts contain any information regarding the author discovering a concert on Jeongdong-gil. The contexts consist only of table of contents entries and descriptions of illustrations, providing no factual content to answer the question."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "The retrieved contexts consist only of table of contents, chapter titles, and descriptions of illustrations. None of the contexts contain the narrative information regarding the author passing by Ewha Girls\u0027 High School or hearing a cello sound to discover the concert."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-021",
+      "question": "정동길 음악회가 일반적인 대형 공연과 달랐던 점은 무엇인가요?",
+      "overallScore": 0.975,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. Context 4 explicitly states it was not a fancy venue or a concert hall with hundreds of spectators, and Context 5 describes citizens stopping their steps during lunch break to listen to the music."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the question by explaining the specific differences between the Jeongdong-gil concert and typical large-scale performances, focusing on the venue and the nature of the audience\u0027s participation."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.9,
+          "reason": "The retrieved contexts contain all the key elements required to construct the reference answer: the presence of four cellists (Context 3), the fact that it was not a fancy venue or a large concert hall (Context 4), and the description of citizens stopping during their lunch break to listen (Context 5). While there are some irrelevant contexts (Contexts 1, 2, 6-11), the core information is precisely captured."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The retrieved contexts cover all the key factual claims in the reference answer: the absence of a fancy venue or large concert hall (Context 4), the presence of four cellists on stage (Context 3), and the fact that citizens spending their lunch break stopped to listen to the music (Context 5)."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-022",
+      "question": "서소문성지 역사박물관을 저자가 실제로 처음 들어가 본 시점은 언제였나요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is directly supported by Context 5, which states that the author actually entered the museum after starting \u0027lunch walks\u0027 (점심걷기)."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and concisely addresses the user\u0027s question by specifying the timing of when the author first entered the museum."
+        },
+        {
+          "name": "context_precision",
+          "score": 1.0,
+          "reason": "The retrieved contexts contain the exact information needed to answer the question. Specifically, Context 4 and Context 5 together explicitly state that although the author passed by the museum many times, they actually entered it after starting their \u0027lunch walks\u0027 (점심걷기), which perfectly matches the reference answer."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The reference answer states that the author had passed the place many times but actually entered it after starting \u0027lunch walks\u0027. Context 4 confirms the author had passed the Seosomun Shrine History Museum several times, and Context 5 explicitly states that they actually entered it after starting \u0027lunch walks\u0027 (점심걷기). All factual claims in the reference answer are supported."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.3333333333333333
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-023",
+      "question": "서소문성지 역사박물관 주변의 철길과 고가도로 기억은 저자에게 어떤 의미로 남아 있나요?",
+      "overallScore": 0.925,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer accurately reflects the provided contexts. It correctly states that there is no mention of \u0027railroads\u0027 (철길) and accurately summarizes the author\u0027s mentions of the Seosomun Overpass (disappearing into history and the heavy heart felt upon hearing news of a collapse)."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.7,
+          "reason": "The answer partially addresses the question. It explicitly states that information about the \u0027railroad\u0027 is missing from the context but provides the specific meaning and emotion associated with the \u0027overpass\u0027 (the feeling of heaviness upon hearing about a collapse). While incomplete due to the missing railroad information, it is honest and provides all available relevant details."
+        },
+        {
+          "name": "context_precision",
+          "score": 1.0,
+          "reason": "The retrieved contexts provide all the necessary components to construct the reference answer. Context 3 mentions the bell sound (철길 건널목의 종소리), Context 4 mentions the disappeared Seosomun overpass (서소문고가도로), Context 5 mentions the overpass collapse accident (고가도로 붕괴 사고), and Context 7 explicitly links these memories to the time Seoul has passed and the author\u0027s own memories (서울이 지나온 시간과 내 기억). The contexts are highly relevant and directly support the expected answer."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The retrieved contexts cover all the key factual claims in the reference answer: the bell sound of the railroad crossing (Context 3), the disappearance of the Seosomun Overpass (Context 4), the memory of the overpass collapse accident (Context 5), and the meaning that these memories overlap with the time Seoul has passed and the author\u0027s personal history (Context 7)."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-024",
+      "question": "서울도서관에 들어섰을 때 바깥 서울광장과 내부 공간은 어떻게 대비되나요?",
+      "overallScore": 0.25,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information regarding the contrast between the interior of the Seoul Library and the exterior Seoul Plaza. The retrieved contexts only list titles or unrelated descriptions."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.0,
+          "reason": "The answer is a refusal to answer based on the lack of information in the provided context. It does not provide any information that addresses the user\u0027s question about the contrast between the interior of the Seoul Library and the exterior Seoul Plaza."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "None of the retrieved contexts contain the information needed to answer the question. While Contexts 2 and 3 mention \u0027Seoul Library\u0027 as a heading or chapter title, they provide no descriptive content regarding the contrast between the noise of Seoul Plaza and the silence of the library interior as specified in the reference answer."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "The retrieved contexts contain only titles or unrelated sentences. None of the contexts provide any information about the contrast between the noise of Seoul Plaza and the quiet interior of the Seoul Library as described in the reference answer."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-025",
+      "question": "서울도서관의 책들을 바라보며 저자는 책을 어떤 존재로 생각하게 되었나요?",
+      "overallScore": 0.7,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer directly reflects the information provided in Context 5, stating that while thousands of books are gathered in one place, each individual book contains one person\u0027s time."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and accurately addresses the user\u0027s question by explaining the author\u0027s perspective on books (that each book contains a person\u0027s time) based on the provided context."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.4,
+          "reason": "Context 5 contains the core idea that each book contains a person\u0027s time, which is central to the reference answer. However, the retrieved contexts are fragmented and missing the explicit conclusion that the author views books as \u0027the time a person has lived\u0027 rather than just \u0027printed letters on paper\u0027. Additionally, many retrieved contexts (Context 2, 8, 9, 10) are completely irrelevant to the question."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.4,
+          "reason": "The retrieved contexts (specifically Context 5) support the claim that each of the thousands of books contains a person\u0027s time. However, the contexts do not mention the specific details from the reference answer regarding \u0027lifelong research\u0027 or \u0027recording one\u0027s life,\u0027 nor do they explicitly state the conclusion that the author views books as \u0027a person\u0027s lived time rather than just printed letters on paper.\u0027"
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-026",
+      "question": "서울시립미술관은 누구나 관람료 없이 들어갈 수 있는 공간으로 소개되나요?",
+      "overallScore": 0.85,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is directly supported by Context 2, which states that \u0027anyone could enter for free\u0027 and it was an \u0027open space\u0027."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and concisely addresses the user\u0027s question, confirming that the Seoul Museum of Art is introduced as a space that anyone can enter for free."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.4,
+          "reason": "Context 2 directly contains the answer to the question, confirming that anyone can enter for free and it is an open space. However, the overall precision is lowered because the majority of the retrieved contexts (1, 3-12) are irrelevant narrative descriptions or atmospheric details that do not contribute to answering the specific question."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The reference answer states that the Seoul Museum of Art is introduced as an open space that is free for everyone and can be visited without burden even during lunch time. Context 2 explicitly confirms that \u0027anyone could enter for free\u0027 and it was \u0027an open space that could be visited without burden even during lunch time\u0027. Combined with Context 4 and Context 12, which identify the location as the Seoul Museum of Art, all factual claims in the reference answer are fully supported."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-027",
+      "question": "건강을 위해 시작한 점심걷기가 서울시립미술관 방문을 통해 어떤 의미로 확장되었나요?",
+      "overallScore": 0.975,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. Context 2 explicitly states that the walking started for health met culture, which led the author to look at themselves more slowly. Context 3 supports the claim that the author felt their heart became lighter than their blood sugar level upon leaving the museum."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by explaining how the lunch walk for health expanded into a cultural experience that allowed the author to reflect on themselves and achieve mental lightness, moving beyond the initial goal of physical health (blood sugar)."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.9,
+          "reason": "The retrieved contexts provide all the necessary components to construct the reference answer: the initial motivation (blood sugar management in Context 10 and 11), the action (visiting the Seoul Museum of Art in Context 7), and the resulting expansion of meaning (meeting culture and reflecting on oneself in Context 2, and the emotional shift in Context 3). While the information is fragmented across several short contexts, the precision is high as there is very little irrelevant noise."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The retrieved contexts cover all key claims of the reference answer: the initial motivation for walking was managing fasting blood sugar (Context 10, 11), the visit to the Seoul Museum of Art (Context 4, 7), and the expansion of the activity from health management to encountering culture and reflecting on oneself (Context 2, 3)."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-028",
+      "question": "젊은 시절 저자가 무료 시사회를 보기 위해 찾았던 곳은 어디인가요?",
+      "overallScore": 0.25,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information regarding where the author went to see a free preview in their youth. This is an accurate reflection of the retrieved contexts."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.0,
+          "reason": "The answer is a refusal to answer based on the lack of information in the context. While it is an honest response regarding the provided data, it does not provide the information requested by the user\u0027s question."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "None of the retrieved contexts contain any information about the author\u0027s youth, free screenings, or the Jeongdong Theater. The contexts focus on the themes of the book and the author\u0027s current identity, making them completely irrelevant to the question."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "The retrieved contexts do not contain any information regarding the author\u0027s youth, free screenings, or the Jeongdong Theater. None of the factual claims in the reference answer are supported."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-029",
+      "question": "덕수궁 돌담길에서 과거의 저자와 현재의 저자가 시간을 대하는 방식은 어떻게 대비되나요?",
+      "overallScore": 0.925,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer is fully supported by the retrieved contexts. Contexts 3, 4, and 5 describe the past author running to catch the last train without time to appreciate the scenery, and Context 6 explicitly states the past author was running toward the future while the current author walks while looking at today. Context 8 further confirms the current author walks slowly."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and clearly addresses the contrast in how the past and present authors perceive and treat time while walking along the Deoksugung stone wall path, providing a complete comparison as requested."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.9,
+          "reason": "The retrieved contexts provide almost all the necessary information to construct the reference answer. Contexts 3, 4, and 5 describe the past self (rushing to catch the last train, running, ignoring the scenery), and Contexts 6, 7, and 8 describe the present self (walking slowly, looking at today, reflecting on the past). The contrast between \u0027running toward the future\u0027 and \u0027walking while looking at today\u0027 is explicitly stated. The only minor missing detail is the specific mention of \u0027trees and seasonal light\u0027 from the reference answer, but the overall contrast in attitude toward time is fully supported."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.8,
+          "reason": "The retrieved contexts cover most of the reference answer: the past self rushing to catch the last train (Context 3, 4) and the current self walking while looking at today (Context 6, 8). However, the specific details about the current author \u0027intentionally slowing down\u0027 and observing \u0027trees and the light of the season\u0027 are not explicitly mentioned in the provided contexts, although the general contrast between rushing and walking is present."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-030",
+      "question": "정동길에서 우연히 만난 음악회의 이름은 무엇인가요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly identifies the name of the concert as \u0027평화를 위한 화목 음악회\u0027, which is explicitly stated in Context 8."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly and completely addresses the user\u0027s question by providing the specific name of the concert."
+        },
+        {
+          "name": "context_precision",
+          "score": 1.0,
+          "reason": "The retrieved contexts contain the exact answer to the question. Specifically, Context 8 explicitly mentions the name of the concert as \u0027평화를 위한 화목 음악회\u0027, which matches the reference answer perfectly. While there are some irrelevant contexts (like illustrations or chapter headings), the core information required to answer the question is present and clear."
+        },
+        {
+          "name": "context_recall",
+          "score": 1.0,
+          "reason": "The reference answer states that the concert encountered on Jeongdong-gil was named \u0027평화를 위한 화목 음악회\u0027. Context 8 explicitly mentions that the \u0027평화를 위한 화목 음악회\u0027 was being held, and Contexts 4, 6, and 7 establish the setting of walking on Jeongdong-gil and following the sound of music to a stage. All necessary information is present."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-031",
+      "question": "정동길에서의 우연한 음악 경험이 저자에게 특별했던 이유는 무엇인가요?",
+      "overallScore": 0.25,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about a music experience on Jeongdong-gil. The contexts only list chapter titles and general reflections on walking, with no mention of music."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.0,
+          "reason": "The answer states that the information is not available in the provided context and therefore does not address the user\u0027s question at all."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "None of the retrieved contexts contain any information about a musical experience on Jeongdong-gil or why it was special to the author. The contexts consist of chapter titles, descriptions of illustrations, and general reflections on walking and life, but they do not provide the specific details needed to answer the question."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "The retrieved contexts contain no information regarding a musical experience on Jeongdong-gil, the author\u0027s feelings about it, or the ability to forget work due to music. The contexts only provide chapter titles and general reflections on walking and life."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-032",
+      "question": "서소문성지 역사박물관에서 저자가 발걸음을 자연스럽게 늦추게 된 이유는 무엇인가요?",
+      "overallScore": 0.8250000000000001,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain the specific reason why the author naturally slowed their pace. While the contexts mention the museum\u0027s atmosphere and the author walking slowly after leaving, they do not explicitly state a reason for \u0027naturally slowing their pace\u0027 inside or at the museum."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by stating that the provided context does not contain the specific information requested. In a RAG evaluation, when the information is missing from the context, an honest admission of its absence is the most relevant and correct response."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.7,
+          "reason": "The retrieved contexts contain the key information needed to answer the question. Specifically, Context 10 explicitly mentions that it was \u0027unbelievably quiet for being in the middle of the city,\u0027 which aligns with the reference answer. However, the specific result of the author \u0027slowing their pace\u0027 is not explicitly stated in the provided snippets, although the atmosphere that caused it is present. The presence of several irrelevant or fragmented contexts (Contexts 1, 2, 3, 4, 5) slightly lowers the precision."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.6,
+          "reason": "The retrieved contexts support the claim that the museum was surprisingly quiet despite being in the middle of the city (Context 10). However, the contexts do not explicitly mention that the author \u0027naturally slowed their pace\u0027 or \u0027lowered their voice\u0027 as a result of this atmosphere, which are key parts of the reference answer."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-033",
+      "question": "서소문 일대에서 사라진 도시 풍경을 떠올리는 일이 역사박물관 관람과 어떻게 연결되나요?",
+      "overallScore": 0.65,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer accurately reflects the information provided in the retrieved contexts: the disappearance of the Seosomun overpass (Context 4), the emotional reaction to the collapse news (Context 5), the visit to the Seosomun Shrine History Museum during a lunch walk (Context 6), and the description of the museum as a space for reflection rather than just acquiring knowledge (Context 10)."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 0.8,
+          "reason": "The answer directly addresses the connection by explaining that the memory of the disappeared urban landscape (the Seosomun overpass) leads the narrator to enter the Seosomun Shrine History Museum, which is described as a space for reflection rather than just acquiring knowledge. It captures the emotional and spatial transition requested by the question."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.4,
+          "reason": "The retrieved contexts contain some key elements mentioned in the reference answer, such as the \u0027Seosomun History Museum\u0027 (Context 1) and the \u0027disappeared Seosomun overpass\u0027 (Context 4). However, they are fragmented sentences that do not explicitly explain the connection between the museum visit and the act of recalling lost city landscapes as a way of intertwining personal memory with city history. The contexts provide the \u0027what\u0027 but not the \u0027how\u0027 or the synthesis required to fully answer the question."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.4,
+          "reason": "The retrieved contexts mention the \u0027Seosomun Holy Ground History Museum\u0027 (Context 1) and the \u0027disappearance of the Seosomun Overpass\u0027 (Context 4). However, they fail to capture the core synthesis of the reference answer: the connection between visiting the museum and the author\u0027s personal process of recalling memories (like the railroad crossing) to experience the city\u0027s history alongside their own personal history. The specific mention of the \u0027railroad crossing\u0027 is missing, and the reflective conclusion about the museum experience is not explicitly stated in the contexts."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-034",
+      "question": "서울도서관에서 저자는 책을 읽다가 무엇을 꺼내 들었나요?",
+      "overallScore": 0.5,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about what the author took out while reading a book at the Seoul Library. After reviewing all contexts, there is no mention of the author taking any object out."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer is relevant because it directly addresses the question by stating that the requested information is not available in the provided context. In a RAG evaluation, an honest admission of missing information is considered a relevant response to the query."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "None of the retrieved contexts contain the information needed to answer the question. The reference answer states that the author took out a \u0027notepad\u0027 (메모장), but this detail is completely absent from all ten provided contexts."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "The reference answer states that the author took out a notepad while reading a book at the Seoul Library. While Context 1 mentions \u0027Seoul Library\u0027, none of the retrieved contexts mention the author reading a book and taking out a notepad."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 0.5
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-035",
+      "question": "서울도서관에서 책을 읽는 경험은 저자의 글쓰기와 어떻게 연결되었나요?",
+      "overallScore": 0.525,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer accurately states that the provided contexts do not contain information linking the experience of reading at the Seoul Library to the author\u0027s writing. It correctly identifies the separate themes present in the contexts (the library and the nature of the book\u0027s content) and concludes that the specific connection requested in the question is missing."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by explaining that the provided context does not contain the specific information requested. In a RAG evaluation, when the answer honestly states that the information is missing from the source rather than hallucinating or providing irrelevant details, it is considered a relevant and correct response to the query based on the available data."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.1,
+          "reason": "The retrieved contexts are almost entirely irrelevant. While Contexts 2, 3, and 5 mention the \u0027Seoul Library\u0027 or the act of being in a library, none of them contain the specific information required to answer the question (the author taking out a notepad, the feeling of wanting to write again, or the idea that a single sentence can lead back to a manuscript). Most of the contexts are either table of contents entries or unrelated reflections on failure and completion."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "The retrieved contexts mention the Seoul Library as a chapter title and discuss general thoughts on libraries and the theme of not finishing things, but they do not contain any of the specific details from the reference answer: the author taking out a notepad, the desire to write again, the idea that a single sentence can change one\u0027s thoughts, or the library serving as a space that leads the author back to tomorrow\u0027s manuscript."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 0.0,
+          "reason": "No-Answer Detection is applicable only to NO_ANSWER cases."
+        }
+      ],
+      "retrieval": {
+        "applicable": true,
+        "hitAtK": true,
+        "recallAtK": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-036",
+      "question": "이 책에서는 부산 해운대 해수욕장을 어떻게 소개하나요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about Haeundae Beach in Busan, which is accurate as the contexts discuss themes of failure, persistence, and the author\u0027s personal background."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the user\u0027s question by stating that the required information is not available in the provided context. In a RAG system, explicitly stating the absence of information is the most relevant response when the context does not contain the answer."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "Context Precision is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "Context Recall is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 1.0,
+          "reason": "The answer correctly identifies that the requested information about Haeundae Beach is not present in the provided context, which aligns perfectly with the reference."
+        }
+      ],
+      "retrieval": {
+        "applicable": false,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-037",
+      "question": "저자가 제주 성산일출봉을 걸으며 느낀 점은 무엇인가요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about the author\u0027s feelings while walking at Seongsan Ilchulbong in Jeju. The contexts only mention locations in Seoul (Seoul Museum of Art, Deoksugung Stone Wall Path) and general sections of a book."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by stating that the requested information is not available in the provided context. In a RAG setting, explicitly stating that the information is missing is the most relevant response when the context does not contain the answer."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "Context Precision is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "Context Recall is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 1.0,
+          "reason": "The answer correctly identifies that the requested information is not available in the provided context, aligning perfectly with the reference."
+        }
+      ],
+      "retrieval": {
+        "applicable": false,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-038",
+      "question": "서울시립미술관에서 저자가 관람한 피카소 전시는 어떤 내용이었나요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer accurately states that the provided contexts do not contain information about a Picasso exhibition and correctly identifies the only exhibition mentioned in the text as \u0027Yoo Youngkuk: Mountains are Inside Me\u0027."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by stating that the requested information is not available in the provided context and specifies what information is actually present. In a RAG setting, explicitly stating that the information is missing is the most relevant response when the context does not contain the answer."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "Context Precision is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "Context Recall is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 1.0,
+          "reason": "The answer correctly identifies that the information about the Picasso exhibition is not present in the provided context and accurately mentions the only exhibition that was actually listed."
+        }
+      ],
+      "retrieval": {
+        "applicable": false,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-039",
+      "question": "덕수궁 돌담길에서 저자가 만난 재즈 공연의 연주자는 누구였나요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information about a jazz performance or a performer, which is accurate as the contexts only discuss the author\u0027s memories of walking and running along the Deoksugung stone wall path."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by stating that the requested information is not available in the provided context. In a RAG setting, explicitly stating that the information is missing is a relevant and correct response when the context does not contain the answer."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "Context Precision is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "Context Recall is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 1.0,
+          "reason": "The answer correctly identifies that the requested information is not present in the provided context, aligning perfectly with the reference."
+        }
+      ],
+      "retrieval": {
+        "applicable": false,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    },
+    {
+      "caseId": "RAG-GOLD-040",
+      "question": "서울도서관에서 저자가 대출한 인공지능 관련 책의 제목은 무엇인가요?",
+      "overallScore": 1.0,
+      "metrics": [
+        {
+          "name": "faithfulness",
+          "score": 1.0,
+          "reason": "The answer correctly states that the provided contexts do not contain information regarding the title of an AI-related book borrowed by the author from the Seoul Library. This is an accurate reflection of the retrieved contexts."
+        },
+        {
+          "name": "answer_relevancy",
+          "score": 1.0,
+          "reason": "The answer directly addresses the question by stating that the requested information is not available in the provided context. In a RAG setting, explicitly stating that the information is missing is a relevant and correct response when the context does not contain the answer."
+        },
+        {
+          "name": "context_precision",
+          "score": 0.0,
+          "reason": "Context Precision is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "context_recall",
+          "score": 0.0,
+          "reason": "Context Recall is not applicable to NO_ANSWER cases."
+        },
+        {
+          "name": "no_answer_detection",
+          "score": 1.0,
+          "reason": "The answer correctly identifies that the requested information is not present in the provided context, aligning perfectly with the reference."
+        }
+      ],
+      "retrieval": {
+        "applicable": false,
+        "hitAtK": false,
+        "recallAtK": 0.0,
+        "mrr": 0.0
+      }
+    }
+  ]
+}
