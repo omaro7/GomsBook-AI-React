@@ -5,7 +5,6 @@ import {
 } from "react"
 
 import {
-  LoaderCircle,
   Send
 } from "lucide-react"
 
@@ -18,12 +17,17 @@ import {
 } from "@/components/ui/textarea"
 
 import {
+  EpubGuidePopover
+} from "@/components/chat/EpubGuidePopover"
+
+import {
   executeAgent
 } from "@/services/agentService"
 
 import {
   useAgentStore
 } from "@/stores/agentStore"
+
 
 export function ChatInput() {
 
@@ -32,10 +36,12 @@ export function ChatInput() {
     setMessage
   ] = useState("")
 
+
   const inputRef =
     useRef<HTMLTextAreaElement | null>(
       null
     )
+
 
   const running =
     useAgentStore(
@@ -46,10 +52,12 @@ export function ChatInput() {
   useEffect(
     () => {
 
-      if (running) {
-
+      if (
+        running
+      ) {
         return
       }
+
 
       requestAnimationFrame(
         () => {
@@ -70,15 +78,19 @@ export function ChatInput() {
     const normalizedMessage =
       message.trim()
 
+
     if (
       !normalizedMessage ||
       running
     ) {
-
       return
     }
 
-    setMessage("")
+
+    setMessage(
+      ""
+    )
+
 
     try {
 
@@ -94,6 +106,7 @@ export function ChatInput() {
         exception instanceof Error
           ? exception.message
           : "Agent 실행 중 오류가 발생했습니다."
+
 
       useAgentStore
         .getState()
@@ -112,115 +125,95 @@ export function ChatInput() {
     if (
       event.key !== "Enter"
     ) {
-
       return
     }
+
 
     if (
       event.shiftKey
     ) {
-
       return
     }
 
+
     event.preventDefault()
+
 
     void submitMessage()
   }
 
 
-  const sendDisabled =
-    running ||
-    !message.trim()
+  function handleGuideSelect(
+    prompt: string
+  ) {
+
+    setMessage(
+      prompt
+    )
+
+
+    requestAnimationFrame(
+      () => {
+
+        inputRef.current?.focus()
+      }
+    )
+  }
 
 
   return (
     <div
       className="
-        shrink-0
         border-t
-        border-border/80
-        bg-card/80
-        px-5
-        pb-5
-        pt-4
-        backdrop-blur-xl
-        max-sm:px-3
-        max-sm:pb-3
-        max-sm:pt-3
+        bg-background
+        p-4
       "
     >
       <div
         className="
           mx-auto
-          w-full
+          flex
+          max-w-5xl
+          items-end
+          gap-2
         "
       >
+        <Textarea
+          ref={inputRef}
+          value={message}
+          onChange={
+            event =>
+              setMessage(
+                event.target.value
+              )
+          }
+          onKeyDown={
+            handleKeyDown
+          }
+          placeholder="GomsBook AI에게 요청하세요."
+          disabled={running}
+          rows={3}
+          className="
+            min-h-[80px]
+            resize-none
+          "
+        />
+
+
         <div
           className="
             flex
-            w-full
-            items-end
-            gap-3
-            rounded-[var(--goms-radius-xl)]
-            border
-            border-border
-            bg-card
-            p-2
-            shadow-[var(--goms-shadow-lg)]
-            transition-all
-            duration-200
-            focus-within:border-primary/50
-            focus-within:ring-4
-            focus-within:ring-primary/10
+            shrink-0
+            flex-col
+            items-center
+            gap-2
           "
         >
-          <Textarea
-            ref={
-              inputRef
+          <EpubGuidePopover
+            disabled={running}
+            onSelect={
+              handleGuideSelect
             }
-            value={
-              message
-            }
-            onChange={
-              event =>
-                setMessage(
-                  event.target.value
-                )
-            }
-            onKeyDown={
-              handleKeyDown
-            }
-            placeholder={
-              running
-                ? "GomsBook AI가 작업 중입니다."
-                : "GomsBook AI에게 요청하세요."
-            }
-            disabled={
-              running
-            }
-            rows={3}
-            aria-label="GomsBook AI 메시지 입력"
-            className="
-              min-h-[84px]
-              max-h-[220px]
-              flex-1
-              resize-none
-              border-0
-              bg-transparent
-              px-3
-              py-2
-              text-sm
-              leading-6
-              text-foreground
-              shadow-none
-              outline-none
-              placeholder:text-muted-foreground
-              focus-visible:ring-0
-              focus-visible:ring-offset-0
-              disabled:cursor-not-allowed
-              disabled:opacity-60
-            "
           />
 
 
@@ -228,107 +221,22 @@ export function ChatInput() {
             type="button"
             size="icon"
             disabled={
-              sendDisabled
+              running ||
+              !message.trim()
             }
             onClick={
               () =>
                 void submitMessage()
             }
-            aria-label={
-              running
-                ? "Agent 실행 중"
-                : "메시지 전송"
-            }
-            className="
-              mb-1
-              size-11
-              shrink-0
-              rounded-[var(--goms-radius-md)]
-              bg-primary
-              text-primary-foreground
-              shadow-[var(--goms-shadow-sm)]
-              transition-all
-              duration-200
-              hover:bg-[var(--goms-primary-hover)]
-              hover:shadow-[var(--goms-shadow-md)]
-              active:scale-[0.97]
-              disabled:bg-muted
-              disabled:text-muted-foreground
-              disabled:shadow-none
-            "
+            aria-label="메시지 전송"
           >
-            {
-              running
-                ? (
-                  <LoaderCircle
-                    className="
-                      size-4
-                      animate-spin
-                    "
-                  />
-                )
-                : (
-                  <Send
-                    className="
-                      size-4
-                    "
-                  />
-                )
-            }
+            <Send
+              className="
+                h-4
+                w-4
+              "
+            />
           </Button>
-        </div>
-
-
-        <div
-          className="
-            mt-2
-            flex
-            items-center
-            justify-between
-            gap-4
-            px-2
-            text-[11px]
-            leading-4
-            text-muted-foreground
-            max-sm:flex-col
-            max-sm:items-start
-            max-sm:gap-1
-          "
-        >
-          <span>
-            Enter 전송 · Shift + Enter 줄바꿈
-          </span>
-
-          {
-            running
-              ? (
-                <span
-                  className="
-                    flex
-                    items-center
-                    gap-1.5
-                    font-medium
-                    text-primary
-                  "
-                >
-                  <span
-                    className="
-                      size-1.5
-                      animate-pulse
-                      rounded-full
-                      bg-primary
-                    "
-                  />
-
-                  Agent 실행 중
-                </span>
-              )
-              : (
-                <span>
-                  GomsBook AI Agent
-                </span>
-              )
-          }
         </div>
       </div>
     </div>

@@ -136,7 +136,7 @@ const GRAPH_VERSIONS: Record<
     changeSummary:
       "Vector Baseline에 Simple Spine Graph를 최초로 결합한 실험입니다.",
     interpretation:
-      "Graph를 추가하는 것 자체가 성능 개선을 보장하는지 검증하는 첫 단계입니다. Baseline 대비 Hit Rate와 MRR의 변화를 중심으로 확인합니다.",
+      "Graph를 추가하는 것 자체가 성능 개선을 보장하는지 검증하는 첫 단계입니다. Baseline 대비 Hit Rate와 MRR의 변화를 중심으로 확인합니다. 구조 정보를 추가하는 것 자체가 관련성을 보장하지 않았고, 무분별한 Graph Expansion이 Vector Ranking의 noise를 증가시켰습니다.",
     config: [
       {
         label: "Retrieval",

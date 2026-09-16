@@ -9,6 +9,8 @@
     {
       "id": "RAG-GOLD-001",
       "type": "ANSWERABLE",
+      "category": "DESCRIPTIVE",
+      "difficulty": "MEDIUM",
       "question": "서울시립미술관은 점심시간에 어떤 장점이 있는 공간으로 소개되나요?",
       "referenceAnswer": "서울시립미술관은 누구나 무료로 들어갈 수 있고 점심시간에도 부담 없이 들를 수 있으며, 바쁜 직장인도 한 시간 정도면 충분히 둘러볼 수 있는 열린 공간으로 소개된다.",
       "sourceHints": [
@@ -24,6 +26,8 @@
     {
       "id": "RAG-GOLD-002",
       "type": "ANSWERABLE",
+      "category": "FACTUAL",
+      "difficulty": "EASY",
       "question": "서울시립미술관에서 본 전시 제목은 무엇인가요?",
       "referenceAnswer": "서울시립미술관에서 본 전시는 『유영국: 산의 내 안에 있다』이다.",
       "sourceHints": [
@@ -38,6 +42,8 @@
     {
       "id": "RAG-GOLD-003",
       "type": "ANSWERABLE",
+      "category": "SEMANTIC",
+      "difficulty": "MEDIUM",
       "question": "예전의 저자에게 덕수궁 돌담길은 어떤 의미였나요?",
       "referenceAnswer": "예전의 저자에게 덕수궁 돌담길은 여유의 공간이 아니라 막차를 놓치지 않기 위해 달려야 했던 시간과의 경주였다.",
       "sourceHints": [
@@ -54,6 +60,8 @@
     {
       "id": "RAG-GOLD-004",
       "type": "ANSWERABLE",
+      "category": "MULTI_CONTEXT",
+      "difficulty": "MEDIUM",
       "question": "정동길에서 우연히 만난 음악회는 어떤 모습이었나요?",
       "referenceAnswer": "이화여고 앞 작은 무대에서 '평화를 위한 화목 음악회'가 열렸고, 네 명의 첼리스트가 연주했으며 점심시간을 보내던 시민들이 하나둘 발걸음을 멈추고 음악을 들었다.",
       "sourceHints": [
@@ -72,6 +80,8 @@
     {
       "id": "RAG-GOLD-005",
       "type": "NO_ANSWER",
+      "category": "NO_ANSWER",
+      "difficulty": "EASY",
       "question": "이 책에서는 인천공항을 어떻게 소개하나요?",
       "referenceAnswer": "해당 프로젝트 문서에는 인천공항에 대한 정보가 없다.",
       "sourceHints": [],
