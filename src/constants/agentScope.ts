@@ -1,0 +1,1 @@
+export const WORKSPACE_PROJECT_ID = "__workspace__"
